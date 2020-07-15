@@ -4,13 +4,14 @@
   "description": "Apollo Graphql server",
   "main": "index.js",
   "scripts": {
-    "start": "node -r dotenv/config build/bin/www dotenv_config_path=./.env.production",
-    "dev": "nodemon -r dotenv/config build/bin/www dotenv_config_path=./.env.development",
-    "build": "npx babel src -d build --copy-files",
-    "build:watch": "npx babel src -d build --copy-files --watch",
+    "start": "node -r dotenv/config lib/bin/www dotenv_config_path=./.env.production",
+    "dev": "nodemon -r dotenv/config lib/bin/www dotenv_config_path=./.env.development",
+    "build": "npx babel src -d lib --copy-files",
+    "build:watch": "npx babel src -d lib --copy-files --watch",
     "dbcreate": "npx sequelize db:create",
     "test": "jest",
-    "doc": "npx graphdoc --force"
+    "doc": "npx graphdoc --force",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -52,9 +53,11 @@
     "@babel/plugin-proposal-optional-chaining": "^7.10.4",
     "@babel/plugin-transform-runtime": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
+    "@babel/preset-flow": "^7.10.4",
     "eslint": "^7.4.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
+    "flow-bin": "^0.129.0",
     "jest": "^26.1.0",
     "nodemon": "^2.0.4",
     "sequelize-cli": "^6.2.0"
