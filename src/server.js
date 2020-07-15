@@ -15,8 +15,11 @@ app.get('/', (req, res) => res.status(200).sendFile('docs/index.html'));
 // eslint-disable-next-line no-unused-vars
 app.use((err, _req, res, _next) => {
   logger.error(err);
-  res.status(500);
-  res.send('Something went wrong');
+  res.status(500).json({
+    error: {
+      message: 'Something went wrong from our side',
+    },
+  });
 });
 
 export default app;
