@@ -7,6 +7,7 @@ const app = express();
 app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
+app.use(express.static('docs'));
 
 app.get('/', (req, res) => res.status(200).sendFile('docs/index.html'));
 
