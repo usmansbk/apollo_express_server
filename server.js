@@ -9,10 +9,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-app.get('/status', (_, res) => res.status(200).json({
-  status: 'good',
-  date: new Date().toDateString(),
-}));
 app.get('/', (req, res) => res.status(200).sendFile('public/index.html'));
 
 // Server Error handler

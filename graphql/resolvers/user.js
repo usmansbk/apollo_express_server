@@ -1,5 +1,5 @@
 module.exports = {
   Query: {
-    firstName: () => 'Usman',
+    status: () => 'good',
   },
 };
