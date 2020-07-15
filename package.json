@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node -r dotenv/config lib/bin/www dotenv_config_path=./.env.production",
     "dev": "nodemon -r dotenv/config lib/bin/www dotenv_config_path=./.env.development",
+    "build": "npx babel src -d lib",
     "dbcreate": "npx sequelize db:create",
     "test": "jest",
     "doc": "npx graphdoc -f"
@@ -44,6 +45,9 @@
   },
   "devDependencies": {
     "@2fd/graphdoc": "^2.4.0",
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
     "eslint": "^7.4.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
