@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node -r dotenv/config lib/bin/www dotenv_config_path=./.env.production",
     "dev": "nodemon -r dotenv/config lib/bin/www dotenv_config_path=./.env.development",
-    "build": "npx babel src -d lib",
+    "build": "npx tsc",
     "dbcreate": "npx sequelize db:create",
     "test": "jest",
     "doc": "npx graphdoc -f"

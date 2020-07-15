@@ -7,3 +7,5 @@ package-lock.json
 /lib
 /public
 /docs
+/build
+/built

@@ -15,3 +15,5 @@ export {
   log,
   error,
 };
+
+export default logger;
