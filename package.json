@@ -44,10 +44,8 @@
   },
   "devDependencies": {
     "@2fd/graphdoc": "^2.4.0",
-    "@types/bunyan": "^1.8.6",
     "jest": "^26.1.0",
     "nodemon": "^2.0.4",
-    "sequelize-cli": "^6.2.0",
-    "typescript": "^3.9.6"
+    "sequelize-cli": "^6.2.0"
   }
 }

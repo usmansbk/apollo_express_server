@@ -3,11 +3,11 @@ import { name } from '../../package.json';
 
 const logger = createLogger({ name });
 
-function log(message: string) {
+function log(message) {
   logger.info(message);
 }
 
-function error(err: any) {
+function error(err) {
   logger.warn(err);
 }
 
