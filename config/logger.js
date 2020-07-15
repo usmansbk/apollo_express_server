@@ -1,6 +1,6 @@
 const bunyan = require('bunyan');
 
-const logger = bunyan.createLogger({ name: 'FML' });
+const logger = bunyan.createLogger({ name: 'ApolloServer' });
 
 function log(message) {
   logger.info(message);
