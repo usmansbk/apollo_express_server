@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/usmansbk/apollo_express_server#readme",
   "dependencies": {
+    "@babel/runtime": "^7.10.5",
     "apollo-server-express": "^2.15.1",
     "bunyan": "^1.8.14",
     "cors": "^2.8.5",
@@ -46,6 +47,7 @@
     "@2fd/graphdoc": "^2.4.0",
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.10.5",
+    "@babel/plugin-transform-runtime": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
     "jest": "^26.1.0",
     "nodemon": "^2.0.4",
