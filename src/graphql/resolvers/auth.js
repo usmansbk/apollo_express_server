@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   Mutation: {
     signin: () => 'signin worked',
   },
