@@ -38,21 +38,15 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql-tools": "^6.0.13",
-    "passport": "^0.4.1",
     "pg": "^8.3.0",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.3"
   },
   "devDependencies": {
     "@2fd/graphdoc": "^2.4.0",
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.10.5",
-    "@babel/preset-env": "^7.10.4",
-    "eslint": "^7.4.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.0",
     "jest": "^26.1.0",
     "nodemon": "^2.0.4",
-    "sequelize-cli": "^6.2.0"
+    "sequelize-cli": "^6.2.0",
+    "typescript": "^3.9.6"
   }
 }
