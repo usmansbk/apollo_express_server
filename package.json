@@ -1,0 +1,51 @@
+{
+  "name": "fund-my-laptop-backend",
+  "version": "1.0.0",
+  "description": "Peer-to-peer lending",
+  "main": "index.js",
+  "scripts": {
+    "start": "node -r dotenv/config bin/www dotenv_config_path=./.env",
+    "dev": "nodemon -r dotenv/config bin/www dotenv_config_path=./.env.development",
+    "test": "jest",
+    "doc": "npx graphdoc -f"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HNGi7-Team-Falcon/Fund-My-Laptop-Backend.git"
+  },
+  "graphdoc": {
+    "endpoint": "http://localhost:4000/graphql",
+    "output": "./public"
+  },
+  "keywords": [
+    "hng",
+    "peer-to-peer-lending"
+  ],
+  "author": "Team Phoenix",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HNGi7-Team-Falcon/Fund-My-Laptop-Backend/issues"
+  },
+  "homepage": "https://github.com/HNGi7-Team-Falcon/Fund-My-Laptop-Backend#readme",
+  "dependencies": {
+    "apollo-server-express": "^2.15.1",
+    "bunyan": "^1.8.14",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql-tools": "^6.0.13",
+    "passport": "^0.4.1",
+    "pg": "^8.3.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.3"
+  },
+  "devDependencies": {
+    "@2fd/graphdoc": "^2.4.0",
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "jest": "^26.1.0",
+    "nodemon": "^2.0.4",
+    "sequelize-cli": "^6.2.0"
+  }
+}
