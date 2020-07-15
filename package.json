@@ -9,7 +9,7 @@
     "build": "npx babel src -d build --copy-files",
     "dbcreate": "npx sequelize db:create",
     "test": "jest",
-    "doc": "npx graphdoc -f"
+    "doc": "npx graphdoc --force"
   },
   "repository": {
     "type": "git",
