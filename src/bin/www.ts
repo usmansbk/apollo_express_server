@@ -1,5 +1,5 @@
 import { ApolloServer } from 'apollo-server-express';
-import { authenticate, sync } from '../config/db';
+import sequelize from '../config/db';
 import app from '../server';
 import { log } from '../config/logger';
 import schema from '../graphql';
@@ -12,8 +12,8 @@ const server = new ApolloServer(schema);
 
 app.listen(PORT, async () => {
   log(`Serving at http://localhost:${PORT}/graphql for ${process.env.NODE_ENV}`);
-  await authenticate();
-  await sync({ force: true });
+  await sequelize.authenticate();
+  await sequelize.sync({ force: true });
   log('Connection to database established successfully');
 });
 

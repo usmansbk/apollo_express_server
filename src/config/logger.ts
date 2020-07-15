@@ -1,13 +1,13 @@
 import { createLogger } from 'bunyan';
-import { name as _name } from '../../package.json';
+import { name } from '../../package.json';
 
-const logger = createLogger({ name: _name });
+const logger = createLogger({ name });
 
-function log(message) {
+function log(message: string) {
   logger.info(message);
 }
 
-function error(err) {
+function error(err: any) {
   logger.warn(err);
 }
 
