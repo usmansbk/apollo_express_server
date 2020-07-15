@@ -7,9 +7,8 @@ const app = express();
 app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
-app.use(express.static('public'));
 
-app.get('/', (req, res) => res.status(200).sendFile('public/index.html'));
+app.get('/', (req, res) => res.status(200).sendFile('docs/index.html'));
 
 // Server Error handler
 // eslint-disable-next-line no-unused-vars
