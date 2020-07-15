@@ -4,9 +4,9 @@
   "description": "Apollo Graphql server",
   "main": "index.js",
   "scripts": {
-    "start": "node -r dotenv/config lib/bin/www dotenv_config_path=./.env.production",
-    "dev": "nodemon -r dotenv/config lib/bin/www dotenv_config_path=./.env.development",
-    "build": "npx tsc",
+    "start": "node -r dotenv/config build/bin/www dotenv_config_path=./.env.production",
+    "dev": "nodemon -r dotenv/config build/bin/www dotenv_config_path=./.env.development",
+    "build": "npx babel src -d build",
     "dbcreate": "npx sequelize db:create",
     "test": "jest",
     "doc": "npx graphdoc -f"

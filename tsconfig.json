@@ -1,12 +1,5 @@
 {
   "compilerOptions": {
-    "outDir": "./built",
-    "allowJs": true,
-    "target": "es5",
-    "esModuleInterop": true,
-    "resolveJsonModule": true
-  },
-  "include": [
-    "./src/**/*"
-  ]
+    "noEmit": true
+  }
 }
