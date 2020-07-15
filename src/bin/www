@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 import { ApolloServer } from 'apollo-server-express';
 import sequelize from '../config/db';
 import app from '../server';

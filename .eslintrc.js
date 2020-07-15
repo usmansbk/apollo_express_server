@@ -10,7 +10,7 @@ module.exports = {
     ecmaVersion: 11,
     sourceType: 'module',
   },
-  ignorePatterns: ['build/**/*'],
+  ignorePatterns: ['build/**/*', 'db/**/*'],
   rules: {
   },
 };
