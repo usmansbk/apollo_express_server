@@ -11,9 +11,7 @@ function error(err) {
   logger.warn(err);
 }
 
-export {
+export default {
   log,
   error,
 };
-
-export default logger;
