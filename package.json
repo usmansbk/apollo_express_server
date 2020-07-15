@@ -1,11 +1,11 @@
 {
-  "name": "GraphQLServer",
+  "name": "graphql-server",
   "version": "1.0.0",
   "description": "Apollo Graphql server",
   "main": "index.js",
   "scripts": {
-    "start": "node -r dotenv/config bin/www dotenv_config_path=./.env.production",
-    "dev": "nodemon -r dotenv/config bin/www dotenv_config_path=./.env.development",
+    "start": "node -r dotenv/config lib/bin/www dotenv_config_path=./.env.production",
+    "dev": "nodemon -r dotenv/config lib/bin/www dotenv_config_path=./.env.development",
     "dbcreate": "npx sequelize db:create",
     "test": "jest",
     "doc": "npx graphdoc -f"
