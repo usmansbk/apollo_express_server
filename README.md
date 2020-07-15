@@ -1,4 +1,4 @@
-# Fund My Laptop
+# Apollo GraphQL express server boilerplate 
 
 ## Prerequisites
 Install [Postgresql](https://docs.boundlessgeo.com/suite/1.1.1/index.html)

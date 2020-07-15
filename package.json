@@ -1,7 +1,7 @@
 {
-  "name": "fund-my-laptop-backend",
+  "name": "GraphQL server",
   "version": "1.0.0",
-  "description": "Peer-to-peer lending",
+  "description": "Apollo Graphql server",
   "main": "index.js",
   "scripts": {
     "start": "node -r dotenv/config bin/www dotenv_config_path=./.env",
@@ -11,22 +11,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HNGi7-Team-Falcon/Fund-My-Laptop-Backend.git"
+    "url": "git+//https://github.com/usmansbk/apollo_express_server.git"
   },
   "graphdoc": {
     "endpoint": "http://localhost:4000/graphql",
     "output": "./public"
   },
   "keywords": [
-    "hng",
-    "peer-to-peer-lending"
+    "boilerplate",
+    "apollo",
+    "server",
+    "expressjs"
   ],
   "author": "Team Phoenix",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/HNGi7-Team-Falcon/Fund-My-Laptop-Backend/issues"
+    "url": "https://github.com/usmansbk/apollo_express_server/issues"
   },
-  "homepage": "https://github.com/HNGi7-Team-Falcon/Fund-My-Laptop-Backend#readme",
+  "homepage": "https://github.com/usmansbk/apollo_express_server#readme",
   "dependencies": {
     "apollo-server-express": "^2.15.1",
     "bunyan": "^1.8.14",

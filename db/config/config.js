@@ -4,14 +4,14 @@ module.exports = {
   development: {
     username: 'postgres',
     password: 'postgres',
-    database: 'fundmylaptop',
+    database: 'boilerplate',
     host: 'localhost',
     dialect: 'postgres',
   },
   test: {
     username: 'root',
     password: null,
-    database: 'fundmylaptop-test',
+    database: 'boilerplate-test',
     host: 'localhost',
     dialect: 'postgres',
   },
