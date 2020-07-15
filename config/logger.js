@@ -1,6 +1,7 @@
 const bunyan = require('bunyan');
+const json = require('../package.json');
 
-const logger = bunyan.createLogger({ name: 'ApolloServer' });
+const logger = bunyan.createLogger({ name: json.name });
 
 function log(message) {
   logger.info(message);
