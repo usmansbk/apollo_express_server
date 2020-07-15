@@ -9,7 +9,7 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(express.static('docs'));
 
-app.get('/', (req, res) => res.status(200).sendFile('docs/index.html'));
+app.get('/', (_req, res) => res.status(200).sendFile('docs/index.html'));
 
 // Server Error handler
 // eslint-disable-next-line no-unused-vars
