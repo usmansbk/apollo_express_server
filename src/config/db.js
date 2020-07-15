@@ -1,5 +1,5 @@
 const { Sequelize } = require('sequelize');
-const config = require('../db/config/config');
+const config = require('../../db/config/config');
 require('dotenv').config();
 
 const { NODE_ENV } = process.env;
