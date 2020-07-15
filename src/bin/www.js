@@ -1,10 +1,10 @@
 import { ApolloServer } from 'apollo-server-express';
 import { authenticate, sync } from '../config/db';
+import app from '../server';
 import { log } from '../config/logger';
 import schema from '../graphql';
 
 require('dotenv').config();
-const app = require('../server').default.default;
 
 const PORT = process.env.PORT || 3000;
 
