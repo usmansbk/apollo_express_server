@@ -12,10 +12,10 @@ const PORT = process.env.PORT || 3000;
 const server = new ApolloServer(schema);
 
 app.listen(PORT, async () => {
-  logger.log(`Serving at http://localhost:${PORT}/graphql for ${process.env.NODE_ENV}`);
+  logger.log(`🚀 Serving at http://localhost:${PORT}/graphql for ${process.env.NODE_ENV}`);
   await sequelize.authenticate();
   await sequelize.sync({ force: true });
-  logger.log('Connection to database established successfully');
+  logger.log('💾 Connection to database established successfully');
 });
 
 server.applyMiddleware({ app });
