@@ -1,4 +1,4 @@
-import Controller from '../../controllers/auth';
+import { Auth as Controller } from '../../controllers';
 
 export default {
   Mutation: {

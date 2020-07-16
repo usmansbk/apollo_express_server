@@ -1,3 +1,7 @@
 import Auth from './auth';
 
-export default { Auth };
+export { Auth };
+
+export default {
+  Auth,
+};
