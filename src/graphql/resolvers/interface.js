@@ -1,8 +1,13 @@
 /* eslint-disable no-underscore-dangle */
 export default {
   MutationResponse: {
-    __resolveType(_obj, _context, info) {
-      return info.fieldName;
+    __resolveType(obj) {
+      return obj.__typename;
+    },
+  },
+  Person: {
+    __resolveType(obj) {
+      return obj.__typename;
     },
   },
 };
