@@ -1,7 +1,7 @@
 export default {
   Query: {
     user: (_parent, args, context) => ({
-      id: args.id + context.me,
+      id: args.id + context.me?.id,
     }),
     me: () => 'me',
   },

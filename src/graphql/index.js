@@ -6,7 +6,7 @@ export default {
   typeDefs,
   resolvers,
   context: ({ req }) => ({
-    me: req.headers?.authorization || 'Usman',
+    me: req.headers?.authorization || { id: 'usman' },
     db,
   }),
 };
