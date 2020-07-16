@@ -1,3 +1,4 @@
 type Query {
-  status: String
+  user: String
+  me: String
 }

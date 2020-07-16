@@ -1,5 +1,6 @@
 export default {
   Query: {
-    status: () => 'good',
+    user: () => 'user',
+    me: () => 'me',
   },
 };
