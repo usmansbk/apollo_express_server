@@ -8,5 +8,10 @@ enum SocialProvider {
   FACEBOOK
 }
 
+enum Roles {
+  USER
+  ADMIN
+}
+
 scalar Date
 scalar JSON

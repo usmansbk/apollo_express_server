@@ -10,6 +10,7 @@ interface Person {
   lastName: String!
   email: String!
   phoneNumber: String
+  roles: [Roles]
   updatedAt: Date!
   createdAt: Date!
 }
