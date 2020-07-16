@@ -8,7 +8,7 @@ enum SocialProvider {
   FACEBOOK
 }
 
-enum Roles {
+enum Role {
   USER
   ADMIN
 }
