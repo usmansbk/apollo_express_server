@@ -3,5 +3,10 @@ enum Order {
   DESC
 }
 
+enum SocialProvider {
+  GOOGLE
+  FACEBOOK
+}
+
 scalar Date
 scalar JSON

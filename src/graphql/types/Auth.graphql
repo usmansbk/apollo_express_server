@@ -35,11 +35,6 @@ input SigninInput {
   password: String!
 }
 
-enum SocialProvider {
-  GOOGLE
-  FACEBOOK
-}
-
 input SocialLoginInput {
   id: ID!
   token: String!
