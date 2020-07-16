@@ -25,7 +25,8 @@
     "boilerplate",
     "apollo",
     "server",
-    "expressjs"
+    "expressjs",
+    "graphql"
   ],
   "author": "Usman Suleiman",
   "license": "ISC",
