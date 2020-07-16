@@ -6,6 +6,7 @@ import { formatError } from '../utils/errorHandler';
 export default {
   typeDefs,
   resolvers,
+  mocks: false,
   formatError,
   dataSources,
   context: ({ req }) => ({
