@@ -5,18 +5,25 @@ require('dotenv').config();
 
 const { NODE_ENV } = process.env;
 
-const db = config[NODE_ENV];
+const {
+  database,
+  username,
+  password,
+  dialect,
+  host,
+  url,
+} = config[NODE_ENV];
 
 const init = async () => {
   let sequelize;
   if (NODE_ENV === 'production') {
-    sequelize = new Sequelize(db.url, {
-      dialect: db.dialect,
+    sequelize = new Sequelize(url, {
+      dialect,
     });
   } else {
-    sequelize = new Sequelize(db.database, db.username, db.password, {
-      dialect: db.dialect,
-      host: db.host,
+    sequelize = new Sequelize(database, username, password, {
+      dialect,
+      host,
     });
   }
   await sequelize.authenticate();
