@@ -3,5 +3,17 @@ type User {
   firstName: String!
   lastName: String!
   email: String!
-  phoneNumber: String!
+  phoneNumber: String
+}
+
+input SignupInput {
+  firstName: String!
+  lastName: String!
+  email: String!
+  phoneNumber: String
+}
+
+input SigninInput {
+  email: String!
+  password: String!
 }
