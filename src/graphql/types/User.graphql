@@ -18,6 +18,12 @@ input SigninInput {
   password: String!
 }
 
+input SocialLoginInput {
+  id: ID!
+  token: String!
+  provider: String!
+}
+
 type AuthResponse implements MutationResponse {
   code: String!
   success: Boolean!

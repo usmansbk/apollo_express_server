@@ -1,6 +1,6 @@
 type Mutation {
   signin(input: SigninInput!): AuthResponse 
   signup(input: SignupInput!): AuthResponse 
-  googleOAuth: AuthResponse
-  facebookOAuth: AuthResponse 
+  googleOAuth(input: SocialLoginInput!): AuthResponse
+  facebookOAuth(input: SocialLoginInput!): AuthResponse 
 }
