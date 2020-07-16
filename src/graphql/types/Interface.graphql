@@ -4,4 +4,9 @@ interface MutationResponse {
   message: String!
 }
 
+enum Order {
+  ASC
+  DESC
+}
+
 scalar Date
