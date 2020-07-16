@@ -1,0 +1,47 @@
+type AuthResponse implements MutationResponse {
+  code: String!
+  success: Boolean!
+  message: String!
+  user: User
+  token: String
+}
+
+type UpdateAuthResponse implements MutationResponse {
+  code: String!
+  success: Boolean!
+  message: String!
+}
+
+input ForgotPasswordInput {
+  email: String!
+}
+
+input ChangePasswordInput {
+  password: ID!
+  newPassword: ID!
+  confirmPassword: ID!
+}
+
+input SignupInput {
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  phoneNumber: String
+}
+
+input SigninInput {
+  email: String!
+  password: String!
+}
+
+enum SocialProvider {
+  GOOGLE
+  FACEBOOK
+}
+
+input SocialLoginInput {
+  id: ID!
+  token: String!
+  provider: SocialProvider!
+}

@@ -8,30 +8,6 @@ type User {
   createdAt: Date!
 }
 
-input SignupInput {
-  firstName: String!
-  lastName: String!
-  email: String!
-  password: String!
-  phoneNumber: String
-}
-
-input SigninInput {
-  email: String!
-  password: String!
-}
-
-enum SocialProvider {
-  GOOGLE
-  FACEBOOK
-}
-
-input SocialLoginInput {
-  id: ID!
-  token: String!
-  provider: SocialProvider!
-}
-
 input SearchUserFilterInput {
   id: ID
   firstName: String
@@ -39,12 +15,4 @@ input SearchUserFilterInput {
   size: Int
   after: ID
   sort: Order
-}
-
-type AuthResponse implements MutationResponse {
-  code: String!
-  success: Boolean!
-  message: String!
-  user: User
-  token: String
 }
