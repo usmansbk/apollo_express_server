@@ -12,4 +12,8 @@ export default class User {
   static email() {
     return 'usmansbk@gmail.com';
   }
+
+  static phoneNumber() {
+    return '08063148541';
+  }
 }

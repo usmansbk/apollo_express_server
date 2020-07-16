@@ -7,5 +7,6 @@ export default {
   },
   User: {
     email: Controller.email,
+    phoneNumber: Controller.phoneNumber,
   },
 };
