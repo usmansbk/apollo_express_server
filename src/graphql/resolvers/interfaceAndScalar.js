@@ -9,7 +9,7 @@ export default {
   },
   Date: new GraphQLScalarType({
     name: 'Date',
-    description: 'date as a string value in ISO format',
+    description: 'Date as a string value in ISO format',
     parseValue(value) {
       return new Date(value);
     },
