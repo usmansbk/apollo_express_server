@@ -8,7 +8,7 @@ Set database username and password to postgres
 
 ```
 npm install
-npx sequelize db:create
+npm run db:create
 ```
 
 ## Run in development
