@@ -10,6 +10,8 @@ type UpdateAuthResponse implements MutationResponse {
   code: String!
   success: Boolean!
   message: String!
+  user: User
+  verify: Boolean
 }
 
 input ForgotPasswordInput {
@@ -17,9 +19,14 @@ input ForgotPasswordInput {
 }
 
 input ChangePasswordInput {
-  password: ID!
+  currentPassword: ID!
   newPassword: ID!
   confirmPassword: ID!
+}
+
+input ChangeEmailInput {
+  currentEmail: String!
+  newEmail: String!
 }
 
 input SignupInput {

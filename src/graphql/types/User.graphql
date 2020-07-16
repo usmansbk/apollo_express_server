@@ -8,6 +8,13 @@ type User {
   createdAt: Date!
 }
 
+input UpdateUserInput {
+  id: ID!
+  firstName: String
+  lastName: String
+  phoneNumber: String
+}
+
 input SearchUserFilterInput {
   id: ID
   firstName: String
