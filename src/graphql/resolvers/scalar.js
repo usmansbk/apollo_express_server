@@ -1,12 +1,6 @@
-/* eslint-disable no-underscore-dangle */
 import { GraphQLScalarType } from 'graphql';
 
 export default {
-  MutationResponse: {
-    __resolveType(type) {
-      return type.__typename;
-    },
-  },
   Date: new GraphQLScalarType({
     name: 'Date',
     description: 'Date as a string value in ISO format',

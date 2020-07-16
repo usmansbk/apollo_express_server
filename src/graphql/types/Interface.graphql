@@ -3,11 +3,3 @@ interface MutationResponse {
   success: Boolean!
   message: String!
 }
-
-enum Order {
-  ASC
-  DESC
-}
-
-scalar Date
-scalar JSON

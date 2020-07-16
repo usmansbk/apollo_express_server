@@ -1,0 +1,7 @@
+enum Order {
+  ASC
+  DESC
+}
+
+scalar Date
+scalar JSON
