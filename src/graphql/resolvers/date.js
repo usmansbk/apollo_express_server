@@ -10,5 +10,8 @@ export default {
     serialize(value) {
       return new Date(value).toISOString();
     },
+    parseLiteral(ast) {
+      return new Date(ast.value).toISOString();
+    },
   }),
 };
