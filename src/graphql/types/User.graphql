@@ -4,6 +4,8 @@ type User {
   lastName: String!
   email: String!
   phoneNumber: String
+  updatedAt: Date!
+  createdAt: Date!
 }
 
 input SignupInput {
