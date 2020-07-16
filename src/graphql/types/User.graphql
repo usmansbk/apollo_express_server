@@ -17,3 +17,11 @@ input SigninInput {
   email: String!
   password: String!
 }
+
+type AuthResponse implements MutationResponse {
+  code: String!
+  success: Boolean!
+  message: String!
+  user: User
+  token: String
+}
