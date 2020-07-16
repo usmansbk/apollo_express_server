@@ -36,6 +36,7 @@
   "homepage": "https://github.com/usmansbk/apollo_express_server#readme",
   "dependencies": {
     "@babel/runtime": "^7.10.5",
+    "apollo-datasource": "^0.7.2",
     "apollo-server-express": "^2.15.1",
     "bunyan": "^1.8.14",
     "cors": "^2.8.5",

@@ -1,5 +1,6 @@
-import models from '../../../db';
+import UserAPI from './user';
+import { User } from '../../../db';
 
 export default () => ({
-  models,
+  user: new UserAPI({ store: User }),
 });
