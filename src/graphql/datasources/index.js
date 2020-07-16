@@ -1,5 +1,9 @@
 import UserAPI from './user';
-import { User } from '../../../db';
+import store from '../../utils/store';
+
+const {
+  User,
+} = store;
 
 export default () => ({
   user: new UserAPI({ store: User }),
