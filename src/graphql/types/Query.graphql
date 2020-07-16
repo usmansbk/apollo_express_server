@@ -1,4 +1,5 @@
 type Query {
-  user: User 
   me: User 
+  user(id: ID!): User 
+  search(filter: SearchUserFilterInput): [User]
 }

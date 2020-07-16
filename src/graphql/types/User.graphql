@@ -32,6 +32,20 @@ input SocialLoginInput {
   provider: SocialProvider!
 }
 
+enum Order {
+  ASC
+  DESC
+}
+
+input SearchUserFilterInput {
+  id: ID
+  firstName: String
+  lastName: String
+  size: Int
+  after: ID
+  sort: Order
+}
+
 type AuthResponse implements MutationResponse {
   code: String!
   success: Boolean!
