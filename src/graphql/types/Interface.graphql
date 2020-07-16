@@ -10,3 +10,4 @@ enum Order {
 }
 
 scalar Date
+scalar JSON
