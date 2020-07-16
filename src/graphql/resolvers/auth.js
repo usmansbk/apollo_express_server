@@ -16,5 +16,6 @@ export default {
     changePassword: () => null,
     forgotPassword: () => null,
     updateProfile: () => null,
+    deleteAccount: () => null,
   },
 };

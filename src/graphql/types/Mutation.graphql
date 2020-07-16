@@ -7,4 +7,5 @@ type Mutation {
   changePassword(input: ChangePasswordInput!): AuthResponse
   forgotPassword(input: ForgotPasswordInput!): AuthResponse
   updateProfile(input: UpdateUserInput!): AuthResponse
+  deleteAccount: AuthResponse
 }
