@@ -1,3 +1,6 @@
 type Mutation {
   signin: String
+  signup: String
+  googleOAuth: String
+  facebookOAuth: String
 }
