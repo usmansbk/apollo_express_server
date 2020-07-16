@@ -11,5 +11,10 @@ export default {
     }),
     signUp: () => null,
     socialLogin: () => null,
+    refreshToken: () => null,
+    changeEmail: () => null,
+    changePassword: () => null,
+    forgotPassword: () => null,
+    updateProfile: () => null,
   },
 };
