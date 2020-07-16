@@ -3,8 +3,8 @@ type Mutation {
   signUp(input: SignupInput!): AuthResponse 
   socialLogin(input: SocialLoginInput!): AuthResponse
   refreshToken(token: String!): AuthResponse
-  changeEmail(input: ChangeEmailInput!): UpdateAuthResponse
-  changePassword(input: ChangePasswordInput!): UpdateAuthResponse
-  forgotPassword(input: ForgotPasswordInput!): UpdateAuthResponse
-  updateProfile(input: UpdateUserInput!): UpdateAuthResponse
+  changeEmail(input: ChangeEmailInput!): AuthResponse
+  changePassword(input: ChangePasswordInput!): AuthResponse
+  forgotPassword(input: ForgotPasswordInput!): AuthResponse
+  updateProfile(input: UpdateUserInput!): AuthResponse
 }

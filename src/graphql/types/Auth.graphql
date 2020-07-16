@@ -4,14 +4,7 @@ type AuthResponse implements MutationResponse {
   message: String!
   user: User
   token: String
-}
-
-type UpdateAuthResponse implements MutationResponse {
-  code: String!
-  success: Boolean!
-  message: String!
-  user: User
-  verify: Boolean
+  verified: Boolean
 }
 
 input ForgotPasswordInput {
