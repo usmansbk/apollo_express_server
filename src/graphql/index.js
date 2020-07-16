@@ -4,4 +4,7 @@ import resolvers from './resolvers';
 export default {
   typeDefs,
   resolvers,
+  context: ({ req }) => ({
+    me: req.headers?.authorization || 'Usman',
+  }),
 };
