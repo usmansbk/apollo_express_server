@@ -8,6 +8,7 @@ export default {
         id: 1,
         firstName: 'usman',
         lastName: 'suleiman',
+        createdAt: new Date(),
       },
       token: '1234',
     }),
