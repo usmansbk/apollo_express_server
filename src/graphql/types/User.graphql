@@ -18,10 +18,15 @@ input SigninInput {
   password: String!
 }
 
+enum SocialProvider {
+  GOOGLE
+  FACEBOOK
+}
+
 input SocialLoginInput {
   id: ID!
   token: String!
-  provider: String!
+  provider: SocialProvider!
 }
 
 type AuthResponse implements MutationResponse {
