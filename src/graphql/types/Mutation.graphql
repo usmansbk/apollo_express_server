@@ -8,5 +8,6 @@ type Mutation {
   forgotPassword(input: ForgotPasswordInput!): AuthResponse
   updateProfile(input: UpdateUserInput!): AuthResponse
   resendVerificationLink: AuthResponse
+  signOut: AuthResponse
   deleteAccount: AuthResponse
 }

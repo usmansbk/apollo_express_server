@@ -11,5 +11,6 @@ export default {
     forgotPassword: Controller.forgotPassword,
     updateProfile: Controller.updateProfile,
     deleteAccount: Controller.deleteAccount,
+    signOut: Controller.signOut,
   },
 };
