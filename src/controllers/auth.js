@@ -20,7 +20,7 @@ export default class Auth {
 
     return {
       code: '201',
-      sucess: true,
+      success: true,
       message: 'Welcome!',
       user,
     };
