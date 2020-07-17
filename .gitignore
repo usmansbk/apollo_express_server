@@ -1,6 +1,8 @@
 .env
 .env.production
 
+*.key
+
 package-lock.json
 /node_modules
 
