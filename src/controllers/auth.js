@@ -1,5 +1,4 @@
 // import logger from '../config/logger';
-import MutationResponse from '../helpers/MutationResponse';
 
 export default class Auth {
   static sigIn() {
@@ -18,11 +17,13 @@ export default class Auth {
     const { input } = args;
     const { dataSources } = context;
     const user = await dataSources.user.create(input);
-    const data = {
+
+    return {
+      code: '201',
+      sucess: true,
+      message: 'Welcome!',
       user,
     };
-
-    return MutationResponse({ code: 201, message: 'Signup successful', data });
   }
 
   static socialLogin() {
