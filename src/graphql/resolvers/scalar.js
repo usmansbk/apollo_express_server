@@ -5,13 +5,13 @@ export default {
     name: 'Date',
     description: 'Date as a string value in ISO format',
     parseValue(value) {
-      return new Date(value);
+      return new Date(value).getTime() / 1000;
     },
     serialize(value) {
-      return new Date(value).toISOString();
+      return String(new Date(value).getTime() / 1000);
     },
     parseLiteral(ast) {
-      return new Date(ast.value).toISOString();
+      return String(new Date(ast.value).getTime() / 1000);
     },
   }),
   JSON: new GraphQLScalarType({
