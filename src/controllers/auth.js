@@ -60,6 +60,10 @@ export default class Auth {
     return null;
   }
 
+  static verifyEmailAddress() {
+    return null;
+  }
+
   static refreshToken() {
     return null;
   }
