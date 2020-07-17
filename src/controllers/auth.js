@@ -16,7 +16,7 @@ export default class Auth {
       res.message = `Welcome back, ${user.firstName}!`;
       res.token = jwt.sign({ id: user.id });
     } catch (err) {
-      res.code = err.extensions?.code;
+      res.code = err.extensions?.code || 400;
       res.success = false;
       res.message = err.message;
     }

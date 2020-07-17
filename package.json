@@ -12,6 +12,7 @@
     "db:migrate": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate",
     "test": "jest",
     "doc": "npx graphdoc --force",
+    "key-gen": "npx ssh-keygen -t rsa -b 2048 -N \"\" -m PEM -f ./jwtRS256.key",
     "prepublish": "npm run build"
   },
   "repository": {
@@ -66,6 +67,7 @@
     "flow-bin": "^0.129.0",
     "jest": "^26.1.0",
     "nodemon": "^2.0.4",
-    "sequelize-cli": "^6.2.0"
+    "sequelize-cli": "^6.2.0",
+    "ssh-keygen": "^0.5.0"
   }
 }
