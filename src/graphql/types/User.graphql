@@ -1,5 +1,6 @@
 type User implements Person {
   id: ID!
+  fullName: String
   firstName: String!
   lastName: String!
   email: String!
