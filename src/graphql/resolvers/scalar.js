@@ -1,20 +1,20 @@
-import { GraphQLScalarType } from 'graphql';
+import { GraphQLScalarType, Kind } from 'graphql';
 
 export default {
   Date: new GraphQLScalarType({
     name: 'Date',
     description: 'Date as a string value in ISO format',
     parseValue(value) {
-      console.log('parse', value);
-      return new Date(value).getTime() / 1000;
+      return new Date(value);
     },
     serialize(value) {
-      console.log('serial', value);
-      return String(new Date(value).getTime() / 1000);
+      return value.getTime();
     },
     parseLiteral(ast) {
-      console.log('pl', ast.value);
-      return String(new Date(ast.value).getTime() / 1000);
+      if (ast.kind === Kind.INT) {
+        return parseInt(ast.value, 10);
+      }
+      return null;
     },
   }),
   JSON: new GraphQLScalarType({
