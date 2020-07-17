@@ -2,6 +2,7 @@ import typeDefs from './types';
 import resolvers from './resolvers';
 import dataSources from './datasources';
 import { formatError } from '../utils/errorHandler';
+import jwt from '../utils/jwt';
 
 export default {
   typeDefs,
@@ -10,6 +11,6 @@ export default {
   formatError,
   dataSources,
   context: ({ req }) => ({
-    me: req.headers?.authorization || { id: 'usman' },
+    me: jwt.verify(req.headers?.authorization)?.user,
   }),
 };

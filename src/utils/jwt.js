@@ -6,12 +6,13 @@ const file = '../../jwtRS256.key';
 const privateKey = fs.readFileSync(path.resolve(__dirname, file));
 const publicKey = fs.readFileSync(path.resolve(__dirname, `${file}.pub`));
 
-function sign(payload) {
-  return jwt.sign(payload, { key: privateKey, passphrase: '' }, { expiresIn: '2d', algorithm: 'RS256' });
+function sign(user) {
+  return jwt.sign({ user }, { key: privateKey, passphrase: '' }, { expiresIn: '2d', algorithm: 'RS256' });
 }
 
 function verify(token) {
-  return jwt.verify(token, publicKey);
+  if (!token) return null;
+  return jwt.verify(token, publicKey, { algorithms: ['RS256'] });
 }
 
 export default {

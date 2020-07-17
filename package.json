@@ -12,7 +12,9 @@
     "db:migrate": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate",
     "test": "jest",
     "doc": "npx graphdoc --force",
-    "key-gen": "npx ssh-keygen -t rsa -b 2048 -N \"\" -m PEM -f ./jwtRS256.key",
+    "privateKey": "npx ssh-keygen -t rsa -b 2048 -m PEM -f ./jwtRS256.key",
+    "publicKey": "npx openssl rsa -in ./jwtRS256.key -pubout -outform PEM -out ./jwtRS256.key.pub",
+    "key-gen": "npm run privateKey && npm run publicKey",
     "prepublish": "npm run build"
   },
   "repository": {
