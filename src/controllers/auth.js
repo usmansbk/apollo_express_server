@@ -17,6 +17,7 @@ export default class Auth {
       const [token, refreshToken] = dataSources.jwt.getTokens(payload);
       res.token = token;
       res.refreshToken = refreshToken;
+      res.verified = Boolean(user.verified);
     } catch (err) {
       res.code = err.extensions?.code || 400;
       res.success = false;

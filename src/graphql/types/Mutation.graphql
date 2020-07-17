@@ -7,6 +7,7 @@ type Mutation {
   forgotPassword(input: ForgotPasswordInput!): AuthResponse
   updateProfile(input: UpdateUserInput!): AuthResponse
   resendVerificationLink: AuthResponse
+  verifyEmail: AuthResponse
   refreshToken: AuthResponse
   signOut: AuthResponse
   deleteAccount: AuthResponse
