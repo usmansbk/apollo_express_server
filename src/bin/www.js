@@ -17,6 +17,6 @@ app.listen(PORT, async () => {
   logger.log('💾 Connection to database established successfully');
 });
 
-server.applyMiddleware({ app });
+server.applyMiddleware({ app, cors: true });
 
 export default server;
