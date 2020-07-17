@@ -44,7 +44,6 @@ export default class Auth {
       res.refreshToken = refreshToken;
       res.verified = false;
     } catch (err) {
-      console.log(err);
       res.code = 400;
       res.success = false;
       res.message = err.message;

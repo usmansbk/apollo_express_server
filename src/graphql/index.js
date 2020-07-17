@@ -10,7 +10,7 @@ export default {
   mocks: false,
   formatError,
   dataSources,
-  context: ({ req }) => ({
-    me: jwt.verify(req.headers?.authorization)?.user,
+  context: ({ req, res }) => ({
+    me: jwt.verify(req, res),
   }),
 };
