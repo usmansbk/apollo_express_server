@@ -1,3 +1,4 @@
+const { v4: uuid } = require('uuid');
 const {
   Model, Sequelize,
 } = require('sequelize');
@@ -46,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     phoneNumber: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     roles: {
       type: DataTypes.ARRAY(DataTypes.ENUM('USER', 'ADMIN')),
@@ -63,7 +64,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
-    freezeTableName: true,
+  });
+
+  User.beforeCreate(user => {
+    user.id = uuid();
   });
   return User;
 };

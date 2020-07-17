@@ -16,6 +16,7 @@ export default class Auth {
       res.token = '1234';
     } catch (err) {
       res.code = '400';
+      res.success = false;
       res.message = err.message;
     }
     return res;
@@ -37,6 +38,7 @@ export default class Auth {
       res.verified = false;
     } catch (err) {
       res.code = '400';
+      res.success = false;
       res.message = err.message;
     }
     return res;

@@ -9,6 +9,7 @@
     "build": "npx babel src -d lib --copy-files",
     "build:watch": "npx babel src -d lib --copy-files --watch",
     "db:create": "npx sequelize db:create",
+    "db:migrate": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate",
     "test": "jest",
     "doc": "npx graphdoc --force",
     "prepublish": "npm run build"
@@ -45,7 +46,8 @@
     "graphql-tools": "^6.0.13",
     "pg": "^8.3.0",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^6.3.3"
+    "sequelize": "^6.3.3",
+    "uuid": "^8.2.0"
   },
   "devDependencies": {
     "@2fd/graphdoc": "^2.4.0",

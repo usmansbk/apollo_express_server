@@ -12,7 +12,8 @@ export default class UserAPI extends DataSource {
   }
 
   async create(data) {
-    return data;
+    const user = await this.store.create(data);
+    return user;
   }
 
   async findByEmailAndPassword(data) {
