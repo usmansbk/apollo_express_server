@@ -26,7 +26,7 @@ export default class Auth {
     const { input } = args;
     const { dataSources } = context;
     const res = {
-      code: '201',
+      code: 201,
       success: true,
       message: `We sent an email to ${input.email} so we can confirm you're you!`,
     };
@@ -37,7 +37,7 @@ export default class Auth {
       res.token = '1234';
       res.verified = false;
     } catch (err) {
-      res.code = '400';
+      res.code = 400;
       res.success = false;
       res.message = err.message;
     }
