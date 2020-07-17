@@ -32,6 +32,10 @@ export default class Auth {
     return null;
   }
 
+  static resendVerificationLink() {
+    return null;
+  }
+
   static refreshToken() {
     return null;
   }
