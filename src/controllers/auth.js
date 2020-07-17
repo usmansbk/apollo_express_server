@@ -16,7 +16,7 @@ export default class Auth {
       res.token = '1234';
     } catch (err) {
       res.code = '400';
-      res.message = 'Incorrect email or password';
+      res.message = err.message;
     }
     return res;
   }
