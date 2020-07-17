@@ -9,6 +9,7 @@ Set database username and password to postgres
 ```
 npm install
 npm run db:create
+npm run key-gen
 ```
 
 ## Run in development
