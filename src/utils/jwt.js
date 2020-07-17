@@ -15,7 +15,15 @@ function verify(token) {
   return jwt.verify(token, publicKey, { algorithms: ['RS256'] });
 }
 
+function getTokens(user) {
+  const accessToken = sign(user);
+  const refreshToken = sign(user, '7d');
+
+  return [accessToken, refreshToken];
+}
+
 export default {
   sign,
   verify,
+  getTokens,
 };

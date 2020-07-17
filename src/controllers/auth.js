@@ -14,8 +14,9 @@ export default class Auth {
       res.user = user;
       res.message = `Welcome back, ${user.firstName}!`;
       const payload = { id: user.id };
-      res.token = dataSources.jwt.sign(payload);
-      res.refreshToken = dataSources.jwt.sign(payload, '7d');
+      const [token, refreshToken] = dataSources.jwt.getTokens(payload);
+      res.token = token;
+      res.refreshToken = refreshToken;
     } catch (err) {
       res.code = err.extensions?.code || 400;
       res.success = false;
@@ -37,8 +38,9 @@ export default class Auth {
       const user = await dataSources.user.create(input);
       res.user = user;
       const payload = { id: user.id };
-      res.token = dataSources.jwt.sign(payload);
-      res.refreshToken = dataSources.jwt.sign(payload, '7d');
+      const [token, refreshToken] = dataSources.jwt.getTokens(payload);
+      res.token = token;
+      res.refreshToken = refreshToken;
       res.verified = false;
     } catch (err) {
       console.log(err);
