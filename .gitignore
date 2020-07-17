@@ -2,6 +2,7 @@
 .env.production
 
 *.key
+*.key.pub
 
 package-lock.json
 /node_modules
