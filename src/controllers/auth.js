@@ -1,16 +1,18 @@
 // import logger from '../config/logger';
 
 export default class Auth {
-  static sigIn() {
-    return ({
+  static async sigIn(_source, args, context) {
+    const { input } = args;
+    const { dataSources } = context;
+    const user = await dataSources.user.findByEmailAndPassword(input);
+
+    return {
       code: '201',
       success: true,
       message: 'Login successful',
-      user: {
-        id: 1,
-      },
+      user,
       token: '1234',
-    });
+    };
   }
 
   static async signUp(_source, args, context) {

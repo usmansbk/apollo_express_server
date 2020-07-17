@@ -11,7 +11,11 @@ export default class UserAPI extends DataSource {
     this.context = config.context;
   }
 
-  create(data) {
+  async create(data) {
+    return data;
+  }
+
+  async findByEmailAndPassword(data) {
     return data;
   }
 }
