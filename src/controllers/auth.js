@@ -1,12 +1,11 @@
 // import logger from '../config/logger';
-import jwt from '../utils/jwt';
 
 export default class Auth {
   static async sigIn(_source, args, context) {
     const { input } = args;
     const { dataSources } = context;
     const res = {
-      code: 201,
+      code: 200,
       success: true,
     };
 
@@ -14,7 +13,7 @@ export default class Auth {
       const user = await dataSources.user.findByEmailAndPassword(input);
       res.user = user;
       res.message = `Welcome back, ${user.firstName}!`;
-      res.token = jwt.sign({ id: user.id });
+      res.token = dataSources.jwt.sign({ id: user.id });
     } catch (err) {
       res.code = err.extensions?.code || 400;
       res.success = false;
@@ -35,7 +34,7 @@ export default class Auth {
     try {
       const user = await dataSources.user.create(input);
       res.user = user;
-      res.token = jwt.sign({ id: user.id });
+      res.token = dataSources.jwt.sign({ id: user.id });
       res.verified = false;
     } catch (err) {
       res.code = 400;
