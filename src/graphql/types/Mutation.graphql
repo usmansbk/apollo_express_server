@@ -2,12 +2,12 @@ type Mutation {
   signIn(input: SigninInput!): AuthResponse 
   signUp(input: SignupInput!): AuthResponse 
   socialLogin(input: SocialLoginInput!): AuthResponse
-  refreshToken(token: String!): AuthResponse
   changeEmail(input: ChangeEmailInput!): AuthResponse
   changePassword(input: ChangePasswordInput!): AuthResponse
   forgotPassword(input: ForgotPasswordInput!): AuthResponse
   updateProfile(input: UpdateUserInput!): AuthResponse
   resendVerificationLink: AuthResponse
+  refreshToken: AuthResponse
   signOut: AuthResponse
   deleteAccount: AuthResponse
 }

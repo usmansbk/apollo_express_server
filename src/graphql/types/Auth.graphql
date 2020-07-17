@@ -4,6 +4,7 @@ type AuthResponse implements MutationResponse {
   message: String!
   user: User
   token: String
+  refreshToken: String
   verified: Boolean
 }
 
