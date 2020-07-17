@@ -27,7 +27,7 @@ const init = async () => {
     });
   }
   await sequelize.authenticate();
-  await sequelize.sync({ force: true });
+  await sequelize.sync({ force: true, match: /-dev$/ }); // set to false in production
   return sequelize;
 };
 
