@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
 
-async function sign(payload) {
+function sign(payload) {
   return jwt.sign(payload, 'test');
 }
 
-async function verify(token) {
+function verify(token) {
   return jwt.verify(token, 'test');
 }
 
