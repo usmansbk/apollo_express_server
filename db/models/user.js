@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    fullName() {
+    get fullName() {
       return [this.firstName, this.lastName].join(' ');
     }
     static associate(models) {
