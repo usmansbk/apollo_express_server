@@ -8,7 +8,5 @@ export default {
   User: {
     email: Controller.email,
     phoneNumber: Controller.phoneNumber,
-    createdAt: () => new Date(),
-    updatedAt: () => new Date(),
   },
 };

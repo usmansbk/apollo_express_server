@@ -5,12 +5,15 @@ export default {
     name: 'Date',
     description: 'Date as a string value in ISO format',
     parseValue(value) {
+      console.log('parse', value);
       return new Date(value).getTime() / 1000;
     },
     serialize(value) {
+      console.log('serial', value);
       return String(new Date(value).getTime() / 1000);
     },
     parseLiteral(ast) {
+      console.log('pl', ast.value);
       return String(new Date(ast.value).getTime() / 1000);
     },
   }),
