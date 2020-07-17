@@ -25,6 +25,7 @@ export default class Auth {
       success: true,
       message: 'Welcome!',
       user,
+      token: '1234',
     };
   }
 
