@@ -15,7 +15,7 @@ export default class Auth {
       res.message = `Welcome back, ${user.firstName}!`;
       res.token = '1234';
     } catch (err) {
-      res.code = err.extensions?.code || 400;
+      res.code = err.extensions?.code;
       res.success = false;
       res.message = err.message;
     }
