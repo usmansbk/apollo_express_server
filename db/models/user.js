@@ -1,4 +1,5 @@
 const { v4: uuid } = require('uuid');
+const bcrypt = require('bcrypt');
 const {
   Model, Sequelize,
 } = require('sequelize');
@@ -13,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     get fullName() {
       return [this.firstName, this.lastName].join(' ');
     }
+
+    async comparePassword(password) {
+      return await bcrypt.compare(password, this.password);
+    }
+
     static associate(models) {
       // define association here
     }
@@ -66,8 +72,9 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
   });
 
-  User.beforeCreate(user => {
+  User.beforeCreate(async user => {
     user.id = uuid();
+    user.password = await bcrypt.hash(user.password, 10);
   });
   return User;
 };

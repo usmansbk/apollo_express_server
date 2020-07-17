@@ -6,6 +6,7 @@ type User implements Person {
   roles: [Role!]
   verified: Boolean
   phoneNumber: String
+  password: String
   updatedAt: Date!
   createdAt: Date!
 }
