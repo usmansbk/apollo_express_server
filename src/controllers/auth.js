@@ -4,29 +4,42 @@ export default class Auth {
   static async sigIn(_source, args, context) {
     const { input } = args;
     const { dataSources } = context;
-    const user = await dataSources.user.findByEmailAndPassword(input);
-
-    return {
+    const res = {
       code: '201',
       success: true,
-      message: 'Login successful',
-      user,
-      token: '1234',
     };
+
+    try {
+      const user = await dataSources.user.findByEmailAndPassword(input);
+      res.user = user;
+      res.message = `Welcome back, ${user.firstName}!`;
+      res.token = '1234';
+    } catch (err) {
+      res.code = '400';
+      res.message = err.message;
+    }
+    return res;
   }
 
   static async signUp(_source, args, context) {
     const { input } = args;
     const { dataSources } = context;
-    const user = await dataSources.user.create(input);
-
-    return {
+    const res = {
       code: '201',
       success: true,
-      message: 'Welcome!',
-      user,
-      token: '1234',
+      message: `We sent an email to ${input.email} so we can confirm you're you!`,
     };
+
+    try {
+      const user = await dataSources.user.create(input);
+      res.user = user;
+      res.token = '1234';
+      res.verified = false;
+    } catch (err) {
+      res.code = '400';
+      res.message = err.message;
+    }
+    return res;
   }
 
   static socialLogin() {

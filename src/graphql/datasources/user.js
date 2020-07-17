@@ -16,6 +16,6 @@ export default class UserAPI extends DataSource {
   }
 
   async findByEmailAndPassword(data) {
-    return data;
+    return { firstName: 'Usman', ...data };
   }
 }
