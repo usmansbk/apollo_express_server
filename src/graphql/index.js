@@ -10,8 +10,8 @@ export default {
   mocks: false,
   formatError,
   dataSources,
-  context: ({ req, res }) => ({
+  context: ({ req }) => ({
     me: jwt.verify(req),
-    res,
+    req,
   }),
 };

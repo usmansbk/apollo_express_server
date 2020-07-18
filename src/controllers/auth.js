@@ -61,9 +61,10 @@ export default class Auth {
   }
 
   static refreshToken(_source, _args, context) {
-    const { dataSources, res } = context;
-    const refreshToken = res?.headers?.refreshToken;
-    console.log(refreshToken);
+    const { dataSources, req } = context;
+    const accessToken = req?.headers?.authorization;
+    const refreshToken = req?.headers?.refreshToken;
+    console.log(refreshToken, accessToken);
     return null;
   }
 
