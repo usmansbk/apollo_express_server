@@ -82,7 +82,7 @@ export default class Auth {
     return {
       code: 200,
       success: true,
-      message: 'Token refreshed',
+      message: 'Access Token refreshed.',
       accessToken,
       refreshToken: newRefreshToken,
     };
@@ -111,7 +111,7 @@ export default class Auth {
       return {
         code: 200,
         success: true,
-        message: 'Email changed',
+        message: 'Your email address has been updated.',
         accessToken,
         refreshToken,
         user,
@@ -174,7 +174,7 @@ export default class Auth {
       return {
         code: 200,
         success: true,
-        message: 'Password changed',
+        message: 'Your password has been updated.',
         accessToken,
         refreshToken,
         user,
