@@ -1,5 +1,7 @@
 // import logger from '../config/logger';
 import { BadRequest, Unauthorized, Forbidden } from '../helpers/errors';
+import mailer from '../utils/mailer';
+import { name } from '../../package.json';
 
 export default class Auth {
   static async login(_source, args, context) {
@@ -36,6 +38,13 @@ export default class Auth {
       const [accessToken, refreshToken] = dataSources.jwt.getTokens(payload);
       await dataSources.session.create({ id, refreshToken });
       // send verify email link to user.email
+      await mailer.confirm({
+        email: user.email,
+        subject: `Welcome to ${name}`,
+        text: "Please confirm we've go your email right",
+        ticket: accessToken,
+        csrfToken: refreshToken,
+      });
       return {
         code: 201,
         success: true,
@@ -134,9 +143,15 @@ export default class Auth {
       if (!user) {
         return Unauthorized();
       }
-      const [accessToken, csrfToken] = dataSources.jwt.getTokens(me, '5min');
+      const [ticket, csrfToken] = dataSources.jwt.getTokens(me, '5min');
       await dataSources.csrf.create({ id: me.id, csrfToken });
-      // send updatePassword to user.email
+      await mailer.confirm({
+        email: user.email,
+        subject: 'Change email address',
+        text: 'Click here to change your email address',
+        ticket,
+        csrfToken,
+      });
       return {
         code: 200,
         success: true,
@@ -197,9 +212,15 @@ export default class Auth {
       if (!user) {
         return Unauthorized();
       }
-      const [accessToken, csrfToken] = dataSources.jwt.getTokens(me, '5min');
+      const [ticket, csrfToken] = dataSources.jwt.getTokens(me, '5min');
       await dataSources.csrf.create({ id: me.id, csrfToken });
-      // send updatePassword to user.email
+      await mailer.confirm({
+        email: user.email,
+        subject: 'Reset Password',
+        text: 'Click here to reset password',
+        ticket,
+        csrfToken,
+      });
       return {
         code: 200,
         success: true,
