@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 // import { ApolloError } from 'apollo-server-express';
 import { DataSource } from 'apollo-datasource';
 

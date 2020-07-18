@@ -10,6 +10,7 @@ export default class Auth {
       const user = await dataSources.user.findByEmailAndPassword(input);
       const payload = { id: user.id };
       const [token, refreshToken] = dataSources.jwt.getTokens(payload);
+      await dataSources.session.create({ id: user.id, refreshToken });
       return {
         code: 200,
         success: true,
@@ -31,6 +32,7 @@ export default class Auth {
       const user = await dataSources.user.create(input);
       const payload = { id: user.id };
       const [token, refreshToken] = dataSources.jwt.getTokens(payload);
+      await dataSources.session.create({ id: user.id, refreshToken });
       return {
         code: 201,
         success: true,

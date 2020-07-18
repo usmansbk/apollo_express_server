@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model, Sequelize
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Session extends Model {
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: Sequelize.UUID4,
       primaryKey: true,
     },
-    refreshToken: DataTypes.STRING
+    refreshToken: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Session',
