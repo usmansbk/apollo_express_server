@@ -138,7 +138,7 @@ export default class Auth {
       return {
         code: 200,
         success: true,
-        message: `We sent a email update link to ${user.email}`,
+        message: `We sent an email update link to ${user.email}`,
         accessToken,
         refreshToken: csrfToken,
       };
@@ -152,8 +152,30 @@ export default class Auth {
   }
 
   // send update password link to user email address
-  static resetPassword() {
-    return null;
+  static async resetPassword(_, _args, context) {
+    const { dataSources, me } = context;
+
+    if (!me) {
+      return Unauthorized();
+    }
+
+    try {
+      const user = await dataSources.user.findById(me.id);
+      if (!user) {
+        return Unauthorized();
+      }
+      const [accessToken, csrfToken] = dataSources.jwt.getTokens(me, '15min');
+      await dataSources.csrf.create({ id: me.id, csrfToken });
+      return {
+        code: 200,
+        success: true,
+        message: `We sent a reset password link to ${user.email}`,
+        accessToken,
+        refreshToken: csrfToken,
+      };
+    } catch (err) {
+      return BadRequest(err.message);
+    }
   }
 
   static updateProfile() {
