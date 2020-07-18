@@ -31,6 +31,6 @@ export default class SessionAPI extends DataSource {
       await session.destroy();
       return true;
     }
-    throw new Error('You are not signed in');
+    throw new Error('You are not logged in');
   }
 }
