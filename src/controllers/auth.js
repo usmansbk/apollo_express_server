@@ -62,20 +62,16 @@ export default class Auth {
 
   static async refreshToken(_source, _args, context) {
     const { dataSources, req, me } = context;
-    if (!me) {
-      return Unauthorized();
-    }
     const refreshToken = req.headers?.refresh_token;
-
-    if (!refreshToken) {
+    if (!(me || refreshToken)) {
       return Unauthorized();
     }
+
     const payload = dataSources.jwt.verify(refreshToken);
     if (!payload) {
       return Unauthorized('Refresh token expired');
     }
     const session = await dataSources.session.findById(me.id);
-    console.log(session, refreshToken);
     if (session?.refreshToken !== refreshToken) {
       return Unauthorized('Invalid refresh token');
     }
@@ -108,7 +104,7 @@ export default class Auth {
       return Unauthorized('Invalid csrf token');
     }
     try {
-      const user = dataSources.user.updateEmail(me, input);
+      const user = await dataSources.user.updateEmail(me, input);
       const [accessToken, refreshToken] = dataSources.jwt.getTokens(user);
       await dataSources.csrf.delete(user.id);
       return {
@@ -137,12 +133,12 @@ export default class Auth {
       if (!user) {
         return Unauthorized();
       }
-      const [accessToken, csrfToken] = dataSources.jwt.getTokens(me, '5sec');
+      const [accessToken, csrfToken] = dataSources.jwt.getTokens(me, '15min');
       await dataSources.csrf.create({ id: me.id, csrfToken });
       return {
         code: 200,
         success: true,
-        message: `We sent a password reset link to ${user.email}`,
+        message: `We sent a email update link to ${user.email}`,
         accessToken,
         refreshToken: csrfToken,
       };

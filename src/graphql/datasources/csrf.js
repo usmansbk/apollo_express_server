@@ -21,6 +21,7 @@ export default class CsrfAPI extends DataSource {
   }
 
   async findById(id) {
+    console.log(id);
     const csrf = await this.store.findByPk(id);
     return csrf;
   }
