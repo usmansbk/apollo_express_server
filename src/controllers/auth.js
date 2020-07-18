@@ -4,7 +4,7 @@ import { BadRequest } from '../helpers/errors';
 export default class Auth {
   static async login(_source, args, context) {
     const { input } = args;
-    const { dataSources, res } = context;
+    const { dataSources } = context;
 
     try {
       const user = await dataSources.user.findByEmailAndPassword(input);
@@ -12,7 +12,6 @@ export default class Auth {
       const payload = { id };
       const [token, refreshToken] = dataSources.jwt.getTokens(payload);
       await dataSources.session.create({ id, refreshToken });
-      res.cookie('refreshToken', refreshToken);
       return {
         code: 200,
         success: true,
@@ -28,7 +27,7 @@ export default class Auth {
 
   static async signUp(_source, args, context) {
     const { input } = args;
-    const { dataSources, res } = context;
+    const { dataSources } = context;
 
     try {
       const user = await dataSources.user.create(input);
@@ -36,7 +35,6 @@ export default class Auth {
       const payload = { id };
       const [token, refreshToken] = dataSources.jwt.getTokens(payload);
       await dataSources.session.create({ id, refreshToken });
-      res.cookie('refreshToken', refreshToken);
       return {
         code: 201,
         success: true,
