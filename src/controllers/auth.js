@@ -97,7 +97,7 @@ export default class Auth {
     }
     const me = dataSources.jwt.verify(ticket);
     if (!me) {
-      return Forbidden('Change email link expired');
+      return Forbidden('Invalid ticket');
     }
     const csrf = await dataSources.csrf.findById(me.id);
     if (csrf?.csrfToken !== csrfToken) {
@@ -106,7 +106,7 @@ export default class Auth {
     try {
       const user = dataSources.user.updateEmail(me, input);
       const [accessToken, refreshToken] = dataSources.jwt.getTokens(user);
-      await dataSources.session.create({ id: user.id, refreshToken });
+      await dataSources.csrf.delete(user.id);
       return {
         code: 200,
         success: true,

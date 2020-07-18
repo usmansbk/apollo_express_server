@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       primaryKey: true,
     },
-    refreshToken: DataTypes.TEXT
+    csrfToken: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Csrf',

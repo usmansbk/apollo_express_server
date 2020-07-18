@@ -23,4 +23,8 @@ export default class UserAPI extends DataSource {
     }
     return user;
   }
+
+  updateEmail(data) {
+    return this.email;
+  }
 }
