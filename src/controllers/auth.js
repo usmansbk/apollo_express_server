@@ -10,13 +10,13 @@ export default class Auth {
       const user = await dataSources.user.findByEmailAndPassword(input);
       const { id } = user;
       const payload = { id };
-      const [token, refreshToken] = dataSources.jwt.getTokens(payload);
+      const [accessToken, refreshToken] = dataSources.jwt.getTokens(payload);
       await dataSources.session.create({ id, refreshToken });
       return {
         code: 200,
         success: true,
         message: `Welcome back, ${user.firstName}!`,
-        token,
+        accessToken,
         refreshToken,
         user,
       };
@@ -33,13 +33,13 @@ export default class Auth {
       const user = await dataSources.user.create(input);
       const { id } = user;
       const payload = { id };
-      const [token, refreshToken] = dataSources.jwt.getTokens(payload);
+      const [accessToken, refreshToken] = dataSources.jwt.getTokens(payload);
       await dataSources.session.create({ id, refreshToken });
       return {
         code: 201,
         success: true,
         message: `We sent an email to ${input.email} so we can confirm you're you!`,
-        token,
+        accessToken,
         refreshToken,
         user,
       };
@@ -60,7 +60,10 @@ export default class Auth {
     return null;
   }
 
-  static refreshToken() {
+  static refreshToken(_source, _args, context) {
+    const { dataSources, res } = context;
+    const refreshToken = res?.headers?.refreshToken;
+    console.log(refreshToken);
     return null;
   }
 

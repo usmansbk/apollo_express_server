@@ -3,7 +3,7 @@ type AuthResponse implements MutationResponse {
   success: Boolean!
   message: String!
   user: User
-  token: String
+  accessToken: String
   refreshToken: String
 }
 
