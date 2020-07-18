@@ -72,7 +72,7 @@ export default class Auth {
       return Unauthorized('Refresh token expired.');
     }
     const session = await dataSources.session.findById(user.id);
-    if (session.refreshToken !== refreshToken) {
+    if (session?.refreshToken !== refreshToken) {
       return Unauthorized('Invalid refresh token.');
     }
     const [accessToken, newRefreshToken] = dataSources.jwt.getTokens(user);
