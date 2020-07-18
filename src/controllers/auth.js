@@ -118,7 +118,7 @@ export default class Auth {
       return {
         code: 204,
         success,
-        message: 'You have logged out',
+        message: 'You have logged out.',
       };
     } catch (err) {
       return Unauthorized(err.message);
