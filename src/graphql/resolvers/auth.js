@@ -2,7 +2,7 @@ import { Auth as Controller } from '../../controllers';
 
 export default {
   Mutation: {
-    signIn: Controller.sigIn,
+    login: Controller.login,
     signUp: Controller.signUp,
     socialLogin: Controller.socialLogin,
     refreshToken: Controller.refreshToken,
@@ -11,6 +11,6 @@ export default {
     forgotPassword: Controller.forgotPassword,
     updateProfile: Controller.updateProfile,
     deleteAccount: Controller.deleteAccount,
-    signOut: Controller.signOut,
+    logout: Controller.logout,
   },
 };

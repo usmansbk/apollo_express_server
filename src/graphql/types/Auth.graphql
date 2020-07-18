@@ -31,7 +31,7 @@ input SignupInput {
   phoneNumber: String
 }
 
-input SigninInput {
+input LoginInput {
   email: String!
   password: String!
 }

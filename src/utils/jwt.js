@@ -11,9 +11,10 @@ function sign(user, expiresIn = '15min') {
 }
 
 function verify(req) {
-  const token = req.headers?.authorization?.user;
+  const token = req.headers?.authorization;
   if (!token) return null;
-  return jwt.verify(token, publicKey, { algorithms: ['RS256'] });
+  const payload = jwt.verify(token, publicKey, { algorithms: ['RS256'] });
+  return payload.user;
 }
 
 function getTokens(user) {

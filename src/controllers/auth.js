@@ -1,7 +1,7 @@
 // import logger from '../config/logger';
 
 export default class Auth {
-  static async sigIn(_source, args, context) {
+  static async login(_source, args, context) {
     const { input } = args;
     const { dataSources } = context;
     const res = {
@@ -87,7 +87,7 @@ export default class Auth {
     return null;
   }
 
-  static signOut() {
+  static logout() {
     return null;
   }
 }

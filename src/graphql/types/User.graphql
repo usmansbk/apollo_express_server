@@ -11,6 +11,13 @@ type User implements Person {
   createdAt: Date!
 }
 
+type UpdateUserResponse implements MutationResponse {
+  code: String!
+  success: Boolean!
+  message: String!
+  user: User
+}
+
 input UpdateUserInput {
   id: ID!
   firstName: String

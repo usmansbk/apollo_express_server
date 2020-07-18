@@ -1,14 +1,15 @@
 type Mutation {
-  signIn(input: SigninInput!): AuthResponse 
+  login(input: LoginInput!): AuthResponse 
   signUp(input: SignupInput!): AuthResponse 
   socialLogin(input: SocialLoginInput!): AuthResponse
   changeEmail(input: ChangeEmailInput!): AuthResponse
   changePassword(input: ChangePasswordInput!): AuthResponse
   forgotPassword(input: ForgotPasswordInput!): AuthResponse
-  updateProfile(input: UpdateUserInput!): AuthResponse
+  updateProfile(input: UpdateUserInput!): UpdateUserResponse 
   resendVerificationLink: AuthResponse
   verifyEmailAddress: AuthResponse
   refreshToken: AuthResponse
-  signOut: AuthResponse
+  uploadProfilePicture(input: String): UpdateUserResponse
+  logout: AuthResponse
   deleteAccount: AuthResponse
 }
