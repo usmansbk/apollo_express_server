@@ -19,7 +19,7 @@ export default class Auth {
       res.refreshToken = refreshToken;
       res.verified = Boolean(user.verified);
     } catch (err) {
-      res.code = err.extensions?.code || 400;
+      res.code = 400;
       res.success = false;
       res.message = err.message;
     }

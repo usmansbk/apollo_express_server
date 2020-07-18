@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import { ApolloError } from 'apollo-server-express';
+// import { ApolloError } from 'apollo-server-express';
 import { DataSource } from 'apollo-datasource';
 
 export default class UserAPI extends DataSource {
@@ -20,7 +20,7 @@ export default class UserAPI extends DataSource {
   async findByEmailAndPassword(data) {
     const user = await this.store.findOne({ where: { email: data.email } });
     if (!(user && await user.comparePassword(data.password))) {
-      throw new ApolloError('Incorrect email or password', 403);
+      throw new Error('Incorrect email or password');
     }
     return user;
   }
