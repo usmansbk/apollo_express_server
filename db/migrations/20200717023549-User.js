@@ -34,7 +34,7 @@ module.exports = {
           type: Sequelize.ARRAY(Sequelize.ENUM('USER', 'ADMIN')),
           allowNull: false,
         },
-        verified: {
+        emailVerified: {
           type: Sequelize.BOOLEAN,
           allowNull: false,
         },

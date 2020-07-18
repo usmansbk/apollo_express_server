@@ -5,7 +5,7 @@ type User implements Person {
   lastName: String!
   email: String!
   roles: [Role!]
-  verified: Boolean
+  emailVerified: Boolean
   phoneNumber: String
   updatedAt: Date!
   createdAt: Date!

@@ -31,6 +31,6 @@ export default class CsrfAPI extends DataSource {
       await csrf.destroy();
       return true;
     }
-    throw new Error('Forbidden');
+    throw new Error('Link already used');
   }
 }
