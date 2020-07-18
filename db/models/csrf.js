@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Csrf.init({
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.UUID,
       primaryKey: true,
     },
     csrfToken: DataTypes.TEXT

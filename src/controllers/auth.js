@@ -121,8 +121,28 @@ export default class Auth {
   }
 
   // send change email link to user email address
-  static changeEmail() {
-    return null;
+  static async changeEmail(_, _args, context) {
+    const { dataSources, me } = context;
+
+    if (!me) {
+      return Unauthorized();
+    }
+
+    try {
+      console.log(me);
+      const user = dataSources.user.findById(me.id);
+      const [accessToken, csrfToken] = dataSources.jwt.getTokens(me);
+      await dataSources.csrf.create({ id: me.id, csrfToken });
+      return {
+        code: 200,
+        success: true,
+        message: `We sent a password reset link to ${user.email}`,
+        accessToken,
+        refreshToken: csrfToken,
+      };
+    } catch (err) {
+      return BadRequest(err.message);
+    }
   }
 
   static updatePassword() {

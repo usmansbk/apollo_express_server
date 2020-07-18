@@ -24,8 +24,13 @@ export default class UserAPI extends DataSource {
     return user;
   }
 
+  async findById(id) {
+    const user = await this.store.findByPk(id);
+    return user;
+  }
+
   async updateEmail(me, data) {
-    const user = await this.store.findByPk(me.id);
+    const user = await this.findById(me.id);
     if (user.email !== data.currentEmail) {
       throw new Error('Forbidden');
     }
