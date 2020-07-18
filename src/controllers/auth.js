@@ -1,7 +1,8 @@
 // import logger from '../config/logger';
 import { BadRequest, Unauthorized, Forbidden } from '../helpers/errors';
 import mailer from '../utils/mailer';
-import { name } from '../../package.json';
+
+const appName = process.env.APP_NAME;
 
 export default class Auth {
   static async login(_source, args, context) {
@@ -40,10 +41,12 @@ export default class Auth {
       // send verify email link to user.email
       await mailer.confirm({
         email: user.email,
-        subject: `Welcome to ${name}`,
+        subject: `Welcome to ${appName}`,
         text: "Please confirm we've go your email right",
+        buttonText: `I'm ${user.firstName}`,
         ticket: accessToken,
         csrfToken: refreshToken,
+        userName: user.firstName,
       });
       return {
         code: 201,
@@ -148,7 +151,8 @@ export default class Auth {
       await mailer.confirm({
         email: user.email,
         subject: 'Change email address',
-        text: 'Click here to change your email address',
+        text: 'You requested to change email? Delete if you did not.',
+        buttonText: 'Continue',
         ticket,
         csrfToken,
       });
@@ -217,7 +221,8 @@ export default class Auth {
       await mailer.confirm({
         email: user.email,
         subject: 'Reset Password',
-        text: 'Click here to reset password',
+        text: 'You requested to change password? Delete if you did not.',
+        buttonText: 'Continue',
         ticket,
         csrfToken,
       });
