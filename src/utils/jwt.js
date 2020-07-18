@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import fs from 'fs';
 import path from 'path';
+import logger from '../config/logger';
 
 const file = '../../jwtRS256.key';
 const privateKey = fs.readFileSync(path.resolve(__dirname, file));
@@ -12,9 +13,15 @@ function sign(user, expiresIn = '15min') {
 
 function verify(req) {
   const token = req.headers?.authorization;
-  if (!token) return null;
-  const payload = jwt.verify(token, publicKey, { algorithms: ['RS256'] });
-  return payload.user;
+  if (token) {
+    try {
+      const payload = jwt.verify(token, publicKey, { algorithms: ['RS256'] });
+      return payload.user;
+    } catch (err) {
+      logger.log(err.message);
+    }
+  }
+  return null;
 }
 
 function getTokens(user) {
