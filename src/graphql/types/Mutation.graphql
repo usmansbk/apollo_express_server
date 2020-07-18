@@ -2,15 +2,15 @@ type Mutation {
   login(input: LoginInput!): AuthResponse 
   signUp(input: SignupInput!): AuthResponse 
   socialLogin(input: SocialLoginInput!): AuthResponse
-  "Expects a reset_email jwt token in your Headers"
+  "Expects a ticket and csrf_token jwt token in your Headers"
   updateEmail(input: ChangeEmailInput!): AuthResponse
-  "Expects a reset_password jwt token in your Headers"
+  "Expects a ticket and csrf_token jwt token in your Headers"
   updatePassword(input: ChangePasswordInput!): AuthResponse
   updateProfile(input: UpdateUserInput!): UpdateUserResponse 
   uploadProfilePicture(input: String): UpdateUserResponse
   "Send verification link to user email address"
   resendVerificationLink: AuthResponse
-  "Expects a verify_email jwt in your Headers"
+  "Expects a ticket and csrf_token jwt in your Headers"
   verifyEmailAddress: AuthResponse
   "Send reset password link to user email address"
   resetPassword: AuthResponse

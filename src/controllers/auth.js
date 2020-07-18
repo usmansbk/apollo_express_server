@@ -1,5 +1,5 @@
 // import logger from '../config/logger';
-import { BadRequest, Unauthorized } from '../helpers/errors';
+import { BadRequest, Unauthorized, Forbidden } from '../helpers/errors';
 
 export default class Auth {
   static async login(_source, args, context) {
@@ -65,7 +65,7 @@ export default class Auth {
     const refreshToken = req.headers?.refresh_token;
 
     if (!refreshToken) {
-      return Unauthorized('You are not logged in.');
+      return Unauthorized();
     }
     const user = dataSources.jwt.verify(refreshToken);
     if (!user) {
@@ -89,9 +89,14 @@ export default class Auth {
 
   static async updateEmail(_source, args, context) {
     const { input } = args;
-    const { dataSources, me } = context;
+    const { dataSources, req } = context;
+    const resetEmail = req.headers?.reset_email;
+    if (!resetEmail) {
+      return BadRequest('Set reset_email header.');
+    }
+    const me = dataSources.jwt.verify(resetEmail);
     if (!me) {
-      return Unauthorized();
+      return Forbidden('Change email link expired.');
     }
     try {
       const user = dataSources.user.updateEmail(me, input);
@@ -110,6 +115,7 @@ export default class Auth {
     }
   }
 
+  // send change email link to user
   static changeEmail() {
     return null;
   }
@@ -118,6 +124,7 @@ export default class Auth {
     return null;
   }
 
+  // send update password link to user
   static resetPassword() {
     return null;
   }
