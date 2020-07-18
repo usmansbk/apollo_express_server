@@ -11,8 +11,7 @@ function sign(user, expiresIn = '15min') {
   return jwt.sign({ user }, { key: privateKey, passphrase: '' }, { expiresIn, algorithm: 'RS256' });
 }
 
-function verify(req) {
-  const token = req.headers?.authorization;
+function verify(token) {
   if (token) {
     try {
       const payload = jwt.verify(token, publicKey, { algorithms: ['RS256'] });

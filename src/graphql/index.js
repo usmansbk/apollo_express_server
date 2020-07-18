@@ -11,7 +11,7 @@ export default {
   formatError,
   dataSources,
   context: ({ req }) => ({
-    me: jwt.verify(req),
+    me: jwt.verify(req.headers?.authorization),
     req,
   }),
 };

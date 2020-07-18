@@ -1,5 +1,5 @@
 // import logger from '../config/logger';
-import { BadRequest } from '../helpers/errors';
+import { BadRequest, Unauthorized } from '../helpers/errors';
 
 export default class Auth {
   static async login(_source, args, context) {
@@ -60,12 +60,31 @@ export default class Auth {
     return null;
   }
 
-  static refreshToken(_source, _args, context) {
+  static async refreshToken(_source, _args, context) {
     const { dataSources, req } = context;
-    const accessToken = req?.headers?.authorization;
-    const refreshToken = req?.headers?.refreshToken;
-    console.log(refreshToken, accessToken);
-    return null;
+    const refreshToken = req.headers?.refresh_token;
+
+    if (!refreshToken) {
+      return Unauthorized('You are not logged in.');
+    }
+    const user = dataSources.jwt.verify(refreshToken);
+    if (!user) {
+      return Unauthorized('Refresh token expired.');
+    }
+    const session = await dataSources.session.findById(user.id);
+    if (session.refreshToken !== refreshToken) {
+      return Unauthorized('Invalid refresh token.');
+    }
+    const [accessToken, newRefreshToken] = dataSources.jwt.getTokens(user);
+    await dataSources.session.create({ id: user.id, refreshToken: newRefreshToken });
+
+    return {
+      code: 200,
+      success: true,
+      message: 'Token refreshed',
+      accessToken,
+      refreshToken: newRefreshToken,
+    };
   }
 
   static changeEmail() {

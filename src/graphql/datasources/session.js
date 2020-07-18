@@ -11,7 +11,7 @@ export default class SessionAPI extends DataSource {
   }
 
   async create(data) {
-    let session = await this.findId(data.id);
+    let session = await this.findById(data.id);
     if (session) {
       await session.update(data);
     } else {
@@ -20,7 +20,7 @@ export default class SessionAPI extends DataSource {
     return session;
   }
 
-  async findId(id) {
+  async findById(id) {
     const session = await this.store.findByPk(id);
     return session;
   }
