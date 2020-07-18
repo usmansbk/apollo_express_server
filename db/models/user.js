@@ -55,6 +55,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    verified: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
     roles: {
       type: DataTypes.ARRAY(DataTypes.ENUM('USER', 'ADMIN')),
       allowNull: false,

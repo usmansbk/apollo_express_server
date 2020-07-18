@@ -34,6 +34,10 @@ module.exports = {
           type: Sequelize.ARRAY(Sequelize.ENUM('USER', 'ADMIN')),
           allowNull: false,
         },
+        verified: {
+          type: Sequelize.BOOLEAN,
+          allowNull: false,
+        },
         password: {
           type: Sequelize.STRING,
           allowNull: false,
