@@ -90,11 +90,12 @@ export default class Auth {
   static async updateEmail(_source, args, context) {
     const { input } = args;
     const { dataSources, req } = context;
-    const resetEmail = req.headers?.reset_email;
-    if (!resetEmail) {
-      return BadRequest('Set reset_email header.');
+    const ticket = req.headers?.ticket;
+    const csrfToken = req.headers?.csrf_token;
+    if (!(ticket || csrfToken)) {
+      return BadRequest('ticket and csrf_token jwt must be set');
     }
-    const me = dataSources.jwt.verify(resetEmail);
+    const me = dataSources.jwt.verify(ticket);
     if (!me) {
       return Forbidden('Change email link expired.');
     }
@@ -115,7 +116,7 @@ export default class Auth {
     }
   }
 
-  // send change email link to user
+  // send change email link to user email address
   static changeEmail() {
     return null;
   }
@@ -124,7 +125,7 @@ export default class Auth {
     return null;
   }
 
-  // send update password link to user
+  // send update password link to user email address
   static resetPassword() {
     return null;
   }
