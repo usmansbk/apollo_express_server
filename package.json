@@ -49,6 +49,7 @@
     "graphql": "^15.3.0",
     "graphql-tools": "^6.0.13",
     "jsonwebtoken": "^8.5.1",
+    "nodemailer": "^6.4.10",
     "pg": "^8.3.0",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.3",

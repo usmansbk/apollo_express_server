@@ -35,6 +35,7 @@ export default class Auth {
       const payload = { id };
       const [accessToken, refreshToken] = dataSources.jwt.getTokens(payload);
       await dataSources.session.create({ id, refreshToken });
+      // send verify email link to user.email
       return {
         code: 201,
         success: true,
@@ -135,12 +136,11 @@ export default class Auth {
       }
       const [accessToken, csrfToken] = dataSources.jwt.getTokens(me, '5min');
       await dataSources.csrf.create({ id: me.id, csrfToken });
+      // send updatePassword to user.email
       return {
         code: 200,
         success: true,
         message: `We sent an email update link to ${user.email}`,
-        accessToken,
-        refreshToken: csrfToken,
       };
     } catch (err) {
       return BadRequest(err.message);
@@ -199,12 +199,11 @@ export default class Auth {
       }
       const [accessToken, csrfToken] = dataSources.jwt.getTokens(me, '5min');
       await dataSources.csrf.create({ id: me.id, csrfToken });
+      // send updatePassword to user.email
       return {
         code: 200,
         success: true,
         message: `We sent a reset password link to ${user.email}`,
-        accessToken,
-        refreshToken: csrfToken,
       };
     } catch (err) {
       return BadRequest(err.message);
