@@ -9,7 +9,7 @@ export default {
     updateEmail: Controller.updateEmail,
     changeEmail: Controller.changeEmail,
     updatePassword: Controller.updatePassword,
-    resetPassword: Controller.updatePassword,
+    resetPassword: Controller.resetPassword,
     updateProfile: Controller.updateProfile,
     deleteAccount: Controller.deleteAccount,
     verifyEmailAddress: Controller.verifyEmailAddress,

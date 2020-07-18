@@ -12,7 +12,6 @@ input ForgotPasswordInput {
 }
 
 input UpdatePasswordInput {
-  currentPassword: ID!
   newPassword: ID!
   confirmPassword: ID!
 }
