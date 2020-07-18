@@ -63,7 +63,7 @@ export default class Auth {
   static async refreshToken(_source, _args, context) {
     const { dataSources, req, me } = context;
     const refreshToken = req.headers?.refresh_token;
-    if (!(me || refreshToken)) {
+    if (!(me && refreshToken)) {
       return Unauthorized();
     }
 
@@ -92,7 +92,7 @@ export default class Auth {
     const { dataSources, req } = context;
     const ticket = req.headers?.ticket;
     const csrfToken = req.headers?.csrf_token;
-    if (!(ticket || csrfToken)) {
+    if (!(ticket && csrfToken)) {
       return BadRequest('ticket and csrf_token jwt must be set in headers');
     }
     const me = dataSources.jwt.verify(ticket);
@@ -110,7 +110,7 @@ export default class Auth {
       return {
         code: 200,
         success: true,
-        message: 'Password changed',
+        message: 'Email changed',
         accessToken,
         refreshToken,
         user,
@@ -133,7 +133,7 @@ export default class Auth {
       if (!user) {
         return Unauthorized();
       }
-      const [accessToken, csrfToken] = dataSources.jwt.getTokens(me, '15min');
+      const [accessToken, csrfToken] = dataSources.jwt.getTokens(me, '5min');
       await dataSources.csrf.create({ id: me.id, csrfToken });
       return {
         code: 200,
@@ -147,8 +147,41 @@ export default class Auth {
     }
   }
 
-  static updatePassword() {
-    return null;
+  static async updatePassword(_, args, context) {
+    const { input } = args;
+    const { dataSources, req } = context;
+    const ticket = req.headers?.ticket;
+    const csrfToken = req.headers?.csrf_token;
+    if (input.newPassword !== input.confirmPassword) {
+      return BadRequest('Passwords do not match');
+    }
+
+    if (!(ticket && csrfToken)) {
+      return BadRequest('ticket and csrf_token jwt must be set in headers');
+    }
+    const me = dataSources.jwt.verify(ticket);
+    if (!me) {
+      return Forbidden('Invalid ticket');
+    }
+    const csrf = await dataSources.csrf.findById(me.id);
+    if (csrf?.csrfToken !== csrfToken) {
+      return Unauthorized('Invalid csrf token');
+    }
+    try {
+      const user = await dataSources.user.updatePassword(me, input);
+      const [accessToken, refreshToken] = dataSources.jwt.getTokens(user);
+      await dataSources.csrf.delete(user.id);
+      return {
+        code: 200,
+        success: true,
+        message: 'Password changed',
+        accessToken,
+        refreshToken,
+        user,
+      };
+    } catch (err) {
+      return BadRequest(err.message);
+    }
   }
 
   // send update password link to user email address
@@ -164,7 +197,7 @@ export default class Auth {
       if (!user) {
         return Unauthorized();
       }
-      const [accessToken, csrfToken] = dataSources.jwt.getTokens(me, '15min');
+      const [accessToken, csrfToken] = dataSources.jwt.getTokens(me, '5min');
       await dataSources.csrf.create({ id: me.id, csrfToken });
       return {
         code: 200,

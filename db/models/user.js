@@ -70,6 +70,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         min: 8,
       },
+      set(value) {
+        const password = bcrypt.hashSync(value, 10);
+        this.setDataValue('password', password);
+      }
     },
   }, {
     sequelize,
@@ -78,7 +82,6 @@ module.exports = (sequelize, DataTypes) => {
 
   User.beforeCreate(async user => {
     user.id = uuid();
-    user.password = await bcrypt.hash(user.password, 10);
   });
   return User;
 };

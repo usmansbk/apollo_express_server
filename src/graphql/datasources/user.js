@@ -39,4 +39,16 @@ export default class UserAPI extends DataSource {
     await user.reload();
     return user;
   }
+
+  async updatePassword(me, data) {
+    const user = await this.findById(me.id);
+    if (!user) {
+      throw new Error('User does not exist');
+    }
+
+    user.password = data.newPassword;
+    await user.save();
+    await user.reload();
+    return user;
+  }
 }
