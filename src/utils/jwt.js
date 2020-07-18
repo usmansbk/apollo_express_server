@@ -23,9 +23,9 @@ function verify(token) {
   return null;
 }
 
-function getTokens(user) {
-  const accessToken = sign(user);
-  const refreshToken = sign(user, '7d');
+function getTokens(user, expiresIn) {
+  const accessToken = sign(user, expiresIn);
+  const refreshToken = sign(user, expiresIn || '7d');
 
   return [accessToken, refreshToken];
 }
