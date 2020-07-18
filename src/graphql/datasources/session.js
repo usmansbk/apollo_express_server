@@ -24,4 +24,13 @@ export default class SessionAPI extends DataSource {
     const session = await this.store.findByPk(id);
     return session;
   }
+
+  async delete(id) {
+    const session = await this.findById(id);
+    if (session) {
+      await session.destroy();
+      return true;
+    }
+    throw new Error('You are not signed in');
+  }
 }

@@ -107,7 +107,21 @@ export default class Auth {
     return null;
   }
 
-  static logout() {
-    return null;
+  static async logout(_source, _args, context) {
+    const { dataSources, me } = context;
+    if (!me) {
+      return Unauthorized('You are not logged in.');
+    }
+
+    try {
+      const success = await dataSources.session.delete(me.id);
+      return {
+        code: 204,
+        success,
+        message: 'You have logged out',
+      };
+    } catch (err) {
+      return Unauthorized(err.message);
+    }
   }
 }
