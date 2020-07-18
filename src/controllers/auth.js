@@ -87,15 +87,38 @@ export default class Auth {
     };
   }
 
+  static async updateEmail(_source, args, context) {
+    const { input } = args;
+    const { dataSources, me } = context;
+    if (!me) {
+      return Unauthorized();
+    }
+    try {
+      const user = dataSources.user.updateEmail(me, input);
+      const [accessToken, refreshToken] = dataSources.jwt.getTokens(user);
+      await dataSources.session.create({ id: user.id, refreshToken });
+      return {
+        code: 200,
+        success: true,
+        message: 'Password changed.',
+        accessToken,
+        refreshToken,
+        user,
+      };
+    } catch (err) {
+      return BadRequest(err.message);
+    }
+  }
+
   static changeEmail() {
     return null;
   }
 
-  static changePassword() {
+  static updatePassword() {
     return null;
   }
 
-  static forgotPassword() {
+  static resetPassword() {
     return null;
   }
 
@@ -110,7 +133,7 @@ export default class Auth {
   static async logout(_source, _args, context) {
     const { dataSources, me } = context;
     if (!me) {
-      return Unauthorized('You are not logged in.');
+      return Unauthorized();
     }
 
     try {

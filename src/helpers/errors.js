@@ -1,4 +1,4 @@
-export function Unauthorized(message) {
+export function Unauthorized(message = 'You are not logged in.') {
   return {
     message,
     success: false,
