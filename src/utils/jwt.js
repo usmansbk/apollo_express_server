@@ -25,7 +25,7 @@ function verify(token) {
 
 function getTokens(user, expiresIn) {
   const accessToken = sign(user, expiresIn);
-  const refreshToken = sign(user, expiresIn || '7d');
+  const refreshToken = sign({ seed: Math.round(Math.random() * 10000) }, expiresIn || '7d');
 
   return [accessToken, refreshToken];
 }

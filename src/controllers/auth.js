@@ -61,22 +61,26 @@ export default class Auth {
   }
 
   static async refreshToken(_source, _args, context) {
-    const { dataSources, req } = context;
+    const { dataSources, req, me } = context;
+    if (!me) {
+      return Unauthorized();
+    }
     const refreshToken = req.headers?.refresh_token;
 
     if (!refreshToken) {
       return Unauthorized();
     }
-    const user = dataSources.jwt.verify(refreshToken);
-    if (!user) {
+    const payload = dataSources.jwt.verify(refreshToken);
+    if (!payload) {
       return Unauthorized('Refresh token expired');
     }
-    const session = await dataSources.session.findById(user.id);
+    const session = await dataSources.session.findById(me.id);
+    console.log(session, refreshToken);
     if (session?.refreshToken !== refreshToken) {
       return Unauthorized('Invalid refresh token');
     }
-    const [accessToken, newRefreshToken] = dataSources.jwt.getTokens(user);
-    await dataSources.session.create({ id: user.id, refreshToken: newRefreshToken });
+    const [accessToken, newRefreshToken] = dataSources.jwt.getTokens(me);
+    await dataSources.session.create({ id: me.id, refreshToken: newRefreshToken });
 
     return {
       code: 200,
@@ -129,9 +133,11 @@ export default class Auth {
     }
 
     try {
-      console.log(me);
-      const user = dataSources.user.findById(me.id);
-      const [accessToken, csrfToken] = dataSources.jwt.getTokens(me);
+      const user = await dataSources.user.findById(me.id);
+      if (!user) {
+        return Unauthorized();
+      }
+      const [accessToken, csrfToken] = dataSources.jwt.getTokens(me, '5sec');
       await dataSources.csrf.create({ id: me.id, csrfToken });
       return {
         code: 200,
