@@ -3,9 +3,9 @@ type Mutation {
   signUp(input: SignupInput!): AuthResponse 
   socialLogin(input: SocialLoginInput!): AuthResponse
   "Expects a ticket and csrf_token jwt token in your Headers"
-  updateEmail(input: ChangeEmailInput!): AuthResponse
+  updateEmail(input: UpdateEmailInput!): AuthResponse
   "Expects a ticket and csrf_token jwt token in your Headers"
-  updatePassword(input: ChangePasswordInput!): AuthResponse
+  updatePassword(input: UpdatePasswordInput!): AuthResponse
   updateProfile(input: UpdateUserInput!): UpdateUserResponse 
   uploadProfilePicture(input: String): UpdateUserResponse
   "Send verification link to user email address"

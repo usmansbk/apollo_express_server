@@ -11,13 +11,13 @@ input ForgotPasswordInput {
   email: String!
 }
 
-input ChangePasswordInput {
+input UpdatePasswordInput {
   currentPassword: ID!
   newPassword: ID!
   confirmPassword: ID!
 }
 
-input ChangeEmailInput {
+input UpdateEmailInput {
   currentEmail: String!
   newEmail: String!
 }
