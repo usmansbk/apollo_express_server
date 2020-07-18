@@ -5,7 +5,6 @@ type AuthResponse implements MutationResponse {
   user: User
   token: String
   refreshToken: String
-  verified: Boolean
 }
 
 input ForgotPasswordInput {

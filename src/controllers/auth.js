@@ -16,7 +16,6 @@ export default class Auth {
         message: `Welcome back, ${user.firstName}!`,
         token,
         refreshToken,
-        verified: Boolean(user.verified),
         user,
       };
     } catch (err) {
@@ -38,7 +37,6 @@ export default class Auth {
         message: `We sent an email to ${input.email} so we can confirm you're you!`,
         token,
         refreshToken,
-        verified: false,
         user,
       };
     } catch (err) {
