@@ -11,13 +11,13 @@ export default class SessionAPI extends DataSource {
   }
 
   async create(data) {
-    const user = await this.store.findOrCreate({
-      where: {
-        id: data.id,
-      },
-      defaults: data,
-    });
-    return user;
+    let session = await this.findId(data.id);
+    if (session) {
+      await session.update(data);
+    } else {
+      session = await this.store.create(data);
+    }
+    return session;
   }
 
   async findId(id) {

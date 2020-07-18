@@ -8,9 +8,10 @@ export default class Auth {
 
     try {
       const user = await dataSources.user.findByEmailAndPassword(input);
-      const payload = { id: user.id };
+      const { id } = user;
+      const payload = { id };
       const [token, refreshToken] = dataSources.jwt.getTokens(payload);
-      await dataSources.session.create({ id: user.id, refreshToken });
+      await dataSources.session.create({ id, refreshToken });
       return {
         code: 200,
         success: true,
@@ -30,9 +31,10 @@ export default class Auth {
 
     try {
       const user = await dataSources.user.create(input);
-      const payload = { id: user.id };
+      const { id } = user;
+      const payload = { id };
       const [token, refreshToken] = dataSources.jwt.getTokens(payload);
-      await dataSources.session.create({ id: user.id, refreshToken });
+      await dataSources.session.create({ id, refreshToken });
       return {
         code: 201,
         success: true,
