@@ -69,11 +69,11 @@ export default class Auth {
     }
     const user = dataSources.jwt.verify(refreshToken);
     if (!user) {
-      return Unauthorized('Refresh token expired.');
+      return Unauthorized('Refresh token expired');
     }
     const session = await dataSources.session.findById(user.id);
     if (session?.refreshToken !== refreshToken) {
-      return Unauthorized('Invalid refresh token.');
+      return Unauthorized('Invalid refresh token');
     }
     const [accessToken, newRefreshToken] = dataSources.jwt.getTokens(user);
     await dataSources.session.create({ id: user.id, refreshToken: newRefreshToken });
@@ -93,11 +93,15 @@ export default class Auth {
     const ticket = req.headers?.ticket;
     const csrfToken = req.headers?.csrf_token;
     if (!(ticket || csrfToken)) {
-      return BadRequest('ticket and csrf_token jwt must be set');
+      return BadRequest('ticket and csrf_token jwt must be set in headers');
     }
     const me = dataSources.jwt.verify(ticket);
     if (!me) {
-      return Forbidden('Change email link expired.');
+      return Forbidden('Change email link expired');
+    }
+    const csrf = await dataSources.csrf.findById(me.id);
+    if (csrf?.csrfToken !== csrfToken) {
+      return Unauthorized('Invalid csrf token');
     }
     try {
       const user = dataSources.user.updateEmail(me, input);
@@ -106,7 +110,7 @@ export default class Auth {
       return {
         code: 200,
         success: true,
-        message: 'Password changed.',
+        message: 'Password changed',
         accessToken,
         refreshToken,
         user,
@@ -149,7 +153,7 @@ export default class Auth {
       return {
         code: 204,
         success,
-        message: 'You have logged out.',
+        message: 'You have logged out',
       };
     } catch (err) {
       return Unauthorized(err.message);
