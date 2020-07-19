@@ -1,4 +1,6 @@
-export default ({ title, buttonText, text }) => `
+export default ({
+  title, buttonText, text, expiresIn = 5,
+}) => `
 <!doctype html>
 <html>
   <head>
@@ -364,6 +366,9 @@ export default ({ title, buttonText, text }) => `
                                   </tbody>
                                 </table>
                               </td>
+                            </tr>
+                            <tr>
+                              <td>This link is only valid for the next ${expiresIn} minutes.</td>
                             </tr>
                           </tbody>
                         </table>

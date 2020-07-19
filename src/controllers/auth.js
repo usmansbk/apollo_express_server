@@ -153,7 +153,7 @@ export default class Auth {
       mailer.confirm({
         email: user.email,
         subject: 'Change email address',
-        text: 'Need to reset your password? Click the button below to get started.',
+        text: `Hi ${user.firstName}, Need to reset your password? Click the button below to get started.`,
         buttonText: 'Continue',
         ticket,
         csrfToken,
@@ -224,7 +224,7 @@ export default class Auth {
       mailer.confirm({
         email: user.email,
         subject: 'Reset Password',
-        text: 'You requested to change password? Delete if you did not.',
+        text: `Hi ${user.firstName}, You requested to change password? Delete if you did not.`,
         buttonText: 'Continue',
         ticket,
         csrfToken,
