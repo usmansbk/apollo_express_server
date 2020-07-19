@@ -12,7 +12,7 @@ async function confirm({
   retryHandler(async () => {
     const testAccount = await nodemailer.createTestAccount();
     const transporter = nodemailer.createTransport({
-      host: 'smtp.ethereal.email',
+      host: process.env.MAILER_HOST,
       port: 587,
       secure: false,
       auth: {
