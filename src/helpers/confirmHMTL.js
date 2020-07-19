@@ -193,6 +193,10 @@ export default ({
       /* -------------------------------------
           OTHER STYLES THAT MIGHT BE USEFUL
       ------------------------------------- */
+      .product-name {
+        margin-top: 30px;
+      }
+
       .last {
         margin-bottom: 0; 
       }
@@ -341,7 +345,7 @@ export default ({
       <tr>
         <td>&nbsp;</td>
         <td class="container">
-          <h6 class="align-center">${productName}</h6>
+          <h6 class="align-center product-name">${productName}</h6>
           <div class="content">
             <!-- START CENTERED WHITE CONTAINER -->
             <table role="presentation" class="main">
