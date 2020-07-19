@@ -367,7 +367,6 @@ export default ({ title, buttonText, text }) => `
                             </tr>
                           </tbody>
                         </table>
-                        <p>Thanks,<br>Usman</p>
                       </td>
                     </tr>
                   </table>

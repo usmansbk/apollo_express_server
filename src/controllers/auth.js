@@ -151,7 +151,7 @@ export default class Auth {
       mailer.confirm({
         email: user.email,
         subject: 'Change email address',
-        text: 'You requested to change email? Delete if you did not.',
+        text: 'Need to reset your password? Click the button below to get started.',
         buttonText: 'Continue',
         ticket,
         csrfToken,
