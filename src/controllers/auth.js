@@ -42,7 +42,7 @@ export default class Auth {
       mailer.confirm({
         email: user.email,
         subject: `Welcome to ${appName}`,
-        text: "Please confirm we've go your email right",
+        text: "Please confirm we've got your email right",
         buttonText: `I'm ${user.firstName}`,
         ticket: accessToken,
         csrfToken: refreshToken,
@@ -159,7 +159,7 @@ export default class Auth {
       return {
         code: 200,
         success: true,
-        message: `We sent an email update link to ${user.email}`,
+        message: `We sent an update email link to ${user.email}`,
       };
     } catch (err) {
       return BadRequest(err.message);
