@@ -39,7 +39,7 @@ export default class Auth {
       const [accessToken, refreshToken] = dataSources.jwt.getTokens(payload);
       await dataSources.session.create({ id, refreshToken });
       // send verify email link to user.email
-      await mailer.confirm({
+      mailer.confirm({
         email: user.email,
         subject: `Welcome to ${appName}`,
         text: "Please confirm we've go your email right",
@@ -148,7 +148,7 @@ export default class Auth {
       }
       const [ticket, csrfToken] = dataSources.jwt.getTokens(me, '5min');
       await dataSources.csrf.create({ id: me.id, csrfToken });
-      await mailer.confirm({
+      mailer.confirm({
         email: user.email,
         subject: 'Change email address',
         text: 'You requested to change email? Delete if you did not.',
@@ -218,7 +218,7 @@ export default class Auth {
       }
       const [ticket, csrfToken] = dataSources.jwt.getTokens(me, '5min');
       await dataSources.csrf.create({ id: me.id, csrfToken });
-      await mailer.confirm({
+      mailer.confirm({
         email: user.email,
         subject: 'Reset Password',
         text: 'You requested to change password? Delete if you did not.',
