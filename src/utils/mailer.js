@@ -20,7 +20,7 @@ async function confirm({
     });
 
     return transporter.sendMail({
-      from: 'usmansbk@gmail.com',
+      from: process.env.EMAIL,
       to: email,
       subject,
       html: template({ title: subject, text, buttonText }),
