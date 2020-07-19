@@ -7,7 +7,7 @@ export default function faultTolerantResolve(cb) {
   operation.attempt((currentAttempt) => {
     cb().catch((err) => {
       if (operation.retry(err)) {
-        logger.log(`Attempt#${currentAttempt} - ${err.message}`);
+        logger.debug(`Attempt#${currentAttempt}`, err.message);
         logger.error(err);
         return;
       }

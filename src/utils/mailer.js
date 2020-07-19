@@ -28,9 +28,7 @@ async function confirm({
       html: template({ title: subject, text, buttonText }),
     }).then((info) => {
       logger.log(info);
-
-      // eslint-disable-next-line no-console
-      console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+      logger.debug('Preview URL: %s', nodemailer.getTestMessageUrl(info));
     });
   });
 }

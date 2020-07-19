@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { createLogger } from 'bunyan';
 import { name } from '../../package.json';
 
@@ -11,7 +12,12 @@ function error(err) {
   logger.warn(err);
 }
 
+function debug(...args) {
+  console.log(...args);
+}
+
 export default {
   log,
   error,
+  debug,
 };
