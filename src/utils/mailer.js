@@ -4,6 +4,8 @@ import template from '../helpers/confirmHMTL';
 import logger from '../config/logger';
 import retryHandler from './retryHandler';
 
+require('dotenv').config();
+
 async function confirm({
   email, subject, text, buttonText,
 }) {
