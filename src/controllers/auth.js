@@ -155,6 +155,7 @@ export default class Auth {
         subject: 'Change email address',
         text: `Hi ${user.firstName}, Need to reset your password? Click the button below to get started.`,
         buttonText: 'Continue',
+        expiresIn: 5,
         ticket,
         csrfToken,
       });
@@ -228,6 +229,7 @@ export default class Auth {
         buttonText: 'Continue',
         ticket,
         csrfToken,
+        expiresIn: 5,
       });
       return {
         code: 200,

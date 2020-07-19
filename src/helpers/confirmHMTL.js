@@ -1,5 +1,5 @@
 export default ({
-  title, buttonText, text, expiresIn = 5,
+  title, buttonText, text, expiresIn, productName = 'Boilerplate',
 }) => `
 <!doctype html>
 <html>
@@ -341,8 +341,8 @@ export default ({
       <tr>
         <td>&nbsp;</td>
         <td class="container">
+          <h6 class="align-center">${productName}</h6>
           <div class="content">
-
             <!-- START CENTERED WHITE CONTAINER -->
             <table role="presentation" class="main">
 
@@ -367,9 +367,10 @@ export default ({
                                 </table>
                               </td>
                             </tr>
+                            ${expiresIn ? `
                             <tr>
-                              <td>This link is only valid for the next ${expiresIn} minutes.</td>
-                            </tr>
+                              <td>This is only valid for the next ${expiresIn} minutes.</td>
+                            </tr>` : ''}
                           </tbody>
                         </table>
                       </td>
