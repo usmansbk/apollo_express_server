@@ -57,8 +57,7 @@ export default class Auth {
         user,
       };
     } catch (err) {
-      const message = err?.errors[0]?.message || err.message;
-      return BadRequest(message);
+      return BadRequest(err.message);
     }
   }
 
@@ -130,8 +129,7 @@ export default class Auth {
         user,
       };
     } catch (err) {
-      const message = err?.errors[0]?.message || err.message;
-      return BadRequest(message);
+      return BadRequest(err.message);
     }
   }
 
