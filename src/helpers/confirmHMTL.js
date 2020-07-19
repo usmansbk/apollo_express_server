@@ -19,7 +19,7 @@ export default ({ title, buttonText, text }) => `
       }
 
       body {
-        background-color: #f6f6f6;
+        background-color: #edf2f7;
         font-family: sans-serif;
         -webkit-font-smoothing: antialiased;
         font-size: 14px;
@@ -46,7 +46,7 @@ export default ({ title, buttonText, text }) => `
       ------------------------------------- */
 
       .body {
-        background-color: #f6f6f6;
+        background-color: #edf2f7;
         width: 100%; 
       }
 
@@ -142,7 +142,7 @@ export default ({ title, buttonText, text }) => `
       }
 
       a {
-        color: #3498db;
+        color: #2c3e50;
         text-decoration: underline; 
       }
 
@@ -164,10 +164,10 @@ export default ({ title, buttonText, text }) => `
       }
         .btn a {
           background-color: #ffffff;
-          border: solid 1px #3498db;
+          border: solid 1px #2c3e50;
           border-radius: 5px;
           box-sizing: border-box;
-          color: #3498db;
+          color: #2c3e50;
           cursor: pointer;
           display: inline-block;
           font-size: 14px;
@@ -179,12 +179,12 @@ export default ({ title, buttonText, text }) => `
       }
 
       .btn-primary table td {
-        background-color: #3498db; 
+        background-color: #2c3e50; 
       }
 
       .btn-primary a {
-        background-color: #3498db;
-        border-color: #3498db;
+        background-color: #2c3e50;
+        border-color: #2c3e50;
         color: #ffffff; 
       }
 
@@ -242,7 +242,7 @@ export default ({ title, buttonText, text }) => `
 
       hr {
         border: 0;
-        border-bottom: 1px solid #f6f6f6;
+        border-bottom: 1px solid #edf2f7;
         margin: 20px 0; 
       }
 
