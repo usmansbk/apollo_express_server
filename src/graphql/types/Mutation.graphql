@@ -13,9 +13,9 @@ type Mutation {
   "Expects a ticket and csrf_token jwt in your Headers"
   verifyEmailAddress: AuthResponse
   "Send reset password link to user email address"
-  resetPassword: AuthResponse
+  requestResetPassword: AuthResponse
   "Send update email link to user email address"
-  changeEmail: AuthResponse
+  requestChangeEmail: AuthResponse
   refreshToken: AuthResponse
   logout: AuthResponse
   deleteAccount: AuthResponse

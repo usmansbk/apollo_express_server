@@ -134,7 +134,7 @@ export default class Auth {
   }
 
   // send change email link to user email address
-  static async changeEmail(_, _args, context) {
+  static async requestChangeEmail(_, _args, context) {
     const { dataSources, me } = context;
 
     if (!me) {
@@ -206,7 +206,7 @@ export default class Auth {
   }
 
   // send update password link to user email address
-  static async resetPassword(_, _args, context) {
+  static async requestResetPassword(_, _args, context) {
     const { dataSources, me } = context;
 
     if (!me) {
