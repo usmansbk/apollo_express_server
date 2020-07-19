@@ -382,7 +382,7 @@ export default ({ title, buttonText, text }) => `
               <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                   <td class="content-block">
-                    <span class="apple-link">&copy; 2020 Devusman. All rights reserved.</span>
+                    <span class="apple-link">&copy; ${new Date().getFullYear()} Devusman. All rights reserved.</span>
                   </td>
                 </tr>
                 <tr>
