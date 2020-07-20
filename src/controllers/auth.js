@@ -65,8 +65,37 @@ export default class Auth {
     return null;
   }
 
-  static resendVerificationLink() {
-    return null;
+  static async resendVerificationLink(_, _args, context) {
+    const { dataSources, me } = context;
+    if (!me) {
+      return Unauthorized();
+    }
+
+    try {
+      const user = await dataSources.user.findById(me.id);
+      const { id } = user;
+      const [csrfToken] = dataSources.jwt.getTokens(me, '5min');
+      await dataSources.csrf.create({ id, csrfToken });
+      // send verify email link to user.email
+      mailer.confirm({
+        email: user.email,
+        subject: 'Verify email address',
+        text: "Please confirm we've got your email right",
+        buttonText: `I'm ${user.firstName}`,
+        token: csrfToken,
+        userName: user.firstName,
+        expiresIn: '5 minutes',
+      });
+
+      return {
+        code: 200,
+        success: true,
+        message: `We sent an email to ${user.email} so we can confirm you're you!`,
+        user,
+      };
+    } catch (err) {
+      return BadRequest(err.message);
+    }
   }
 
   static verifyEmailAddress() {
