@@ -107,7 +107,7 @@ export default class Auth {
     }
     const csrf = await dataSources.csrf.findById(me.id);
     if (csrf?.csrfToken !== token) {
-      return Unauthorized('Invalid link');
+      return Unauthorized('Invalid token');
     }
     try {
       const user = await dataSources.user.verifyEmail(me);
@@ -163,7 +163,7 @@ export default class Auth {
     }
     const csrf = await dataSources.csrf.findById(me.id);
     if (csrf?.csrfToken !== token) {
-      return Unauthorized('Invalid link');
+      return Unauthorized('Invalid token');
     }
     try {
       const user = await dataSources.user.updateEmail(me, input);
@@ -238,7 +238,7 @@ export default class Auth {
     }
     const csrf = await dataSources.csrf.findById(me.id);
     if (csrf?.csrfToken !== token) {
-      return Unauthorized('Invalid link');
+      return Unauthorized('Invalid token');
     }
     try {
       const user = await dataSources.user.updatePassword(me, input);
@@ -337,7 +337,7 @@ export default class Auth {
 
     const csrf = await dataSources.csrf.findById(me.id);
     if (csrf?.csrfToken !== token) {
-      return Unauthorized('Link expired');
+      return Unauthorized('Invalid token');
     }
 
     try {
