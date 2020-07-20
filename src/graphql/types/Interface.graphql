@@ -12,6 +12,7 @@ interface Person {
   email: String!
   phoneNumber: String
   roles: [Role!]
+  identities: [SocialIdentity]
   updatedAt: Date!
   createdAt: Date!
 }
