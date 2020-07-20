@@ -238,8 +238,33 @@ export default class Auth {
     return null;
   }
 
-  static deleteAccount() {
-    return null;
+  static async deleteAccount(_, _args, context) {
+    const { dataSources, req } = context;
+
+    const token = req.headers?.delete_token;
+
+    if (!token) {
+      return BadRequest('No reset token');
+    }
+
+    const me = dataSources.jwt.verify(token);
+    if (!me) {
+      return Forbidden('Invalid token');
+    }
+
+    try {
+      const { id } = me;
+      await dataSources.user.delete(id);
+      await dataSources.session.delete(id);
+      await dataSources.csrf.delete(id);
+      return {
+        code: 204,
+        success: true,
+        message: 'Account deleted',
+      };
+    } catch (err) {
+      return BadRequest(err.message);
+    }
   }
 
   static async requestDeleteAccount(_, _args, context) {

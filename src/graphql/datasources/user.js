@@ -51,4 +51,13 @@ export default class UserAPI extends DataSource {
     await user.reload();
     return user;
   }
+
+  async delete(id) {
+    const user = await this.findById(id);
+    if (user) {
+      await user.destroy();
+      return true;
+    }
+    throw new Error('Account already deleted');
+  }
 }
