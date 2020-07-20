@@ -57,7 +57,7 @@ export default class Auth {
         user,
       };
     } catch (err) {
-      return BadRequest(err.message);
+      return BadRequest(`${err.message}. Make sure you've entered your correct details`);
     }
   }
 
