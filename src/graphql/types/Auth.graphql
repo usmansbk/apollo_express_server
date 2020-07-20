@@ -9,7 +9,9 @@ type AuthResponse implements MutationResponse {
 
 type SocialIdentity {
   id: ID!
-  provider: SocialProvider 
+  provider: SocialProvider!
+  connection: String!
+  isSocial: Boolean
 }
 
 input ForgotPasswordInput {
