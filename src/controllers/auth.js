@@ -163,10 +163,13 @@ export default class Auth {
     }
     const csrf = await dataSources.csrf.findById(me.id);
     if (csrf?.csrfToken !== token) {
-      return Unauthorized('Link expired');
+      return Unauthorized('Invalid link');
     }
     try {
       const user = await dataSources.user.updateEmail(me, input);
+      if (!user.emailVerified) {
+        return BadRequest('Verify current email address');
+      }
       const [accessToken, refreshToken] = dataSources.jwt.getTokens(user);
       await dataSources.csrf.delete(user.id);
       return {
@@ -194,6 +197,9 @@ export default class Auth {
       const user = await dataSources.user.findById(me.id);
       if (!user) {
         return Unauthorized();
+      }
+      if (!user.emailVerified) {
+        return BadRequest('Verify current email address');
       }
       const [token] = dataSources.jwt.getTokens(me, '5min');
       await dataSources.csrf.create({ id: me.id, csrfToken: token });
@@ -232,10 +238,13 @@ export default class Auth {
     }
     const csrf = await dataSources.csrf.findById(me.id);
     if (csrf?.csrfToken !== token) {
-      return Unauthorized('Link expired');
+      return Unauthorized('Invalid link');
     }
     try {
       const user = await dataSources.user.updatePassword(me, input);
+      if (!user.emailVerified) {
+        return BadRequest('Verify your email address');
+      }
       const [accessToken, refreshToken] = dataSources.jwt.getTokens(user);
       await dataSources.csrf.delete(user.id);
       return {
@@ -263,6 +272,9 @@ export default class Auth {
       const user = await dataSources.user.findById(me.id);
       if (!user) {
         return Unauthorized();
+      }
+      if (!user.emailVerified) {
+        return BadRequest('Verify your email address');
       }
       const [token] = dataSources.jwt.getTokens(me, '5min');
       await dataSources.csrf.create({ id: me.id, csrfToken: token });
@@ -294,6 +306,10 @@ export default class Auth {
 
     try {
       const user = await dataSources.user.updateDetails(me, input);
+      if (!user.emailVerified) {
+        return BadRequest('Verify your email address');
+      }
+
       return {
         code: 200,
         success: true,
