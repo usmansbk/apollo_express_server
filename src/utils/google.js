@@ -1,5 +1,4 @@
 import { google } from 'googleapis';
-import jwt from 'jsonwebtoken';
 import config from '../../client_secret.json';
 
 const { web } = config;
