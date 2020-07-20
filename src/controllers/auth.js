@@ -62,10 +62,6 @@ export default class Auth {
     }
   }
 
-  static socialLogin() {
-    return null;
-  }
-
   static async resendEmailVerificationLink(_, _args, context) {
     const { dataSources, me } = context;
     if (!me) {

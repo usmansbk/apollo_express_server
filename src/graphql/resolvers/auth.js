@@ -1,10 +1,10 @@
-import { Auth as Controller } from '../../controllers';
+import { Auth as Controller, SocialAuth } from '../../controllers';
 
 export default {
   Mutation: {
     login: Controller.login,
     signUp: Controller.signUp,
-    socialLogin: Controller.socialLogin,
+    socialLogin: SocialAuth.socialLogin,
     refreshToken: Controller.refreshToken,
     updateEmail: Controller.updateEmail,
     requestChangeEmail: Controller.requestChangeEmail,
