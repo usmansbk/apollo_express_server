@@ -44,9 +44,9 @@ export default class Auth {
         subject: `Welcome to ${appName}`,
         text: "Please confirm we've got your email right",
         buttonText: `I'm ${user.firstName}`,
-        ticket: accessToken,
-        csrfToken: refreshToken,
+        token: refreshToken,
         userName: user.firstName,
+        expiresIn: '7 days',
       });
       return {
         code: 201,
@@ -152,7 +152,7 @@ export default class Auth {
         subject: 'Change email address',
         text: `Hi ${user.firstName}, Need to reset your password? Click the button below to get started.`,
         buttonText: 'Continue',
-        expiresIn: 5,
+        expiresIn: '5 minutes',
         token,
       });
       return {
@@ -168,7 +168,7 @@ export default class Auth {
   static async updatePassword(_, args, context) {
     const { input } = args;
     const { dataSources, req } = context;
-    const token = req.headers?.ticket;
+    const token = req.headers?.token;
     if (input.newPassword !== input.confirmPassword) {
       return BadRequest('Passwords do not match');
     }
@@ -178,7 +178,7 @@ export default class Auth {
     }
     const me = dataSources.jwt.verify(token);
     if (!me) {
-      return Forbidden('Invalid ticket');
+      return Forbidden('Invalid token');
     }
     const csrf = await dataSources.csrf.findById(me.id);
     if (csrf?.csrfToken !== token) {
@@ -222,7 +222,7 @@ export default class Auth {
         text: `Hi ${user.firstName}, You requested to change password? Click the button below to get started.`,
         buttonText: 'Continue',
         token,
-        expiresIn: 5,
+        expiresIn: '5 minutes',
       });
       return {
         code: 200,

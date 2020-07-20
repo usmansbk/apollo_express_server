@@ -1,5 +1,7 @@
+const { APP_HOST } = process.env;
+
 export default ({
-  title, buttonText, text, expiresIn, productName = 'Boilerplate',
+  title, buttonText, text, expiresIn, productName = 'Boilerplate', token,
 }) => `
 <!doctype html>
 <html>
@@ -365,7 +367,7 @@ export default ({
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                   <tbody>
                                     <tr>
-                                      <td> <a href="http://htmlemail.io" target="_blank">${buttonText}</a> </td>
+                                      <td> <a href="http://${APP_HOST}?token=${token}" target="_blank">${buttonText}</a> </td>
                                     </tr>
                                   </tbody>
                                 </table>
@@ -373,7 +375,7 @@ export default ({
                             </tr>
                             ${expiresIn ? `
                             <tr>
-                              <td>This is only valid for the next ${expiresIn} minutes.</td>
+                              <td>This is only valid for the next ${expiresIn}.</td>
                             </tr>` : ''}
                           </tbody>
                         </table>
