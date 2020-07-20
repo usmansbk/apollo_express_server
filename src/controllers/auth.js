@@ -103,18 +103,17 @@ export default class Auth {
   static async updateEmail(_source, args, context) {
     const { input } = args;
     const { dataSources, req } = context;
-    const ticket = req.headers?.ticket;
-    const csrfToken = req.headers?.csrf_token;
-    if (!(ticket && csrfToken)) {
-      return BadRequest('ticket and csrf_token jwt must be set in headers');
+    const token = req.headers?.reset_token;
+    if (!token) {
+      return BadRequest('No reset token');
     }
-    const me = dataSources.jwt.verify(ticket);
+    const me = dataSources.jwt.verify(token);
     if (!me) {
-      return Forbidden('Invalid ticket');
+      return Forbidden('Invalid token');
     }
     const csrf = await dataSources.csrf.findById(me.id);
-    if (csrf?.csrfToken !== csrfToken) {
-      return Unauthorized('Invalid csrf token');
+    if (csrf?.csrfToken !== token) {
+      return Unauthorized('Link expired');
     }
     try {
       const user = await dataSources.user.updateEmail(me, input);
@@ -146,16 +145,15 @@ export default class Auth {
       if (!user) {
         return Unauthorized();
       }
-      const [ticket, csrfToken] = dataSources.jwt.getTokens(me, '5min');
-      await dataSources.csrf.create({ id: me.id, csrfToken });
+      const [token] = dataSources.jwt.getTokens(me, '5min');
+      await dataSources.csrf.create({ id: me.id, token });
       mailer.confirm({
         email: user.email,
         subject: 'Change email address',
         text: `Hi ${user.firstName}, Need to reset your password? Click the button below to get started.`,
         buttonText: 'Continue',
         expiresIn: 5,
-        ticket,
-        csrfToken,
+        token,
       });
       return {
         code: 200,
@@ -170,22 +168,21 @@ export default class Auth {
   static async updatePassword(_, args, context) {
     const { input } = args;
     const { dataSources, req } = context;
-    const ticket = req.headers?.ticket;
-    const csrfToken = req.headers?.csrf_token;
+    const token = req.headers?.ticket;
     if (input.newPassword !== input.confirmPassword) {
       return BadRequest('Passwords do not match');
     }
 
-    if (!(ticket && csrfToken)) {
-      return BadRequest('ticket and csrf_token jwt must be set in headers');
+    if (!token) {
+      return BadRequest('No reset token');
     }
-    const me = dataSources.jwt.verify(ticket);
+    const me = dataSources.jwt.verify(token);
     if (!me) {
       return Forbidden('Invalid ticket');
     }
     const csrf = await dataSources.csrf.findById(me.id);
-    if (csrf?.csrfToken !== csrfToken) {
-      return Unauthorized('Invalid csrf token');
+    if (csrf?.csrfToken !== token) {
+      return Unauthorized('Link expired');
     }
     try {
       const user = await dataSources.user.updatePassword(me, input);
@@ -200,8 +197,7 @@ export default class Auth {
         user,
       };
     } catch (err) {
-      const message = err?.errors[0]?.message || err.message;
-      return BadRequest(message);
+      return BadRequest(err.message);
     }
   }
 
@@ -218,15 +214,14 @@ export default class Auth {
       if (!user) {
         return Unauthorized();
       }
-      const [ticket, csrfToken] = dataSources.jwt.getTokens(me, '5min');
-      await dataSources.csrf.create({ id: me.id, csrfToken });
+      const [token] = dataSources.jwt.getTokens(me, '5min');
+      await dataSources.csrf.create({ id: me.id, token });
       mailer.confirm({
         email: user.email,
         subject: 'Reset Password',
-        text: `Hi ${user.firstName}, You requested to change password? Delete if you did not.`,
+        text: `Hi ${user.firstName}, You requested to change password? Click the button below to get started.`,
         buttonText: 'Continue',
-        ticket,
-        csrfToken,
+        token,
         expiresIn: 5,
       });
       return {
