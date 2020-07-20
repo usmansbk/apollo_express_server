@@ -125,7 +125,7 @@ export default class Auth {
 
   static async refreshToken(_source, _args, context) {
     const { dataSources, req, me } = context;
-    const refreshToken = req.headers?.token;
+    const refreshToken = req.headers?.refresh_token;
     if (!(me && refreshToken)) {
       return Unauthorized();
     }
