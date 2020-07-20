@@ -1,4 +1,3 @@
-// import logger from '../config/logger';
 import { BadRequest, Unauthorized, Forbidden } from '../helpers/errors';
 import mailer from '../utils/mailer';
 
