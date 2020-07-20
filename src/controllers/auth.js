@@ -287,8 +287,25 @@ export default class Auth {
     }
   }
 
-  static updateProfile() {
-    return null;
+  static async updateProfile(_, args, context) {
+    const { input } = args;
+    const { dataSources, me } = context;
+
+    if (!me) {
+      return Forbidden('You are not logged in');
+    }
+
+    try {
+      const user = await dataSources.user.updateDetails(me, input);
+      return {
+        code: 200,
+        success: true,
+        message: 'Your profile has been updated.',
+        user,
+      };
+    } catch (err) {
+      return BadRequest(err.message);
+    }
   }
 
   static async deleteAccount(_, _args, context) {

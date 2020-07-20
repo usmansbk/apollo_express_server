@@ -19,7 +19,6 @@ type UpdateUserResponse implements MutationResponse {
 }
 
 input UpdateUserInput {
-  id: ID!
   firstName: String
   lastName: String
   phoneNumber: String

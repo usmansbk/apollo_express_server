@@ -1,5 +1,6 @@
 // import { ApolloError } from 'apollo-server-express';
 import { DataSource } from 'apollo-datasource';
+import buildForm from '../../utils/formBuilder';
 
 export default class UserAPI extends DataSource {
   constructor({ store }) {
@@ -71,5 +72,17 @@ export default class UserAPI extends DataSource {
       return true;
     }
     throw new Error('Account already deleted');
+  }
+
+  async updateDetails(me, data) {
+    // prevent client from updating sensitive fields
+    const values = buildForm(data, { ignore: ['id', 'createdAt', 'updatedAt', 'emailVerified'] });
+
+    const user = await this.findById(me.id);
+    if (user) {
+      const updated = await user.update(values);
+      return updated;
+    }
+    throw new Error('User not found');
   }
 }
