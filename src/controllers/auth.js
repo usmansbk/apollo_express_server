@@ -242,6 +242,38 @@ export default class Auth {
     return null;
   }
 
+  static async requestDeleteAccount(_, _args, context) {
+    const { dataSources, me } = context;
+
+    if (!me) {
+      return Unauthorized();
+    }
+
+    try {
+      const user = await dataSources.user.findById(me.id);
+      if (!user) {
+        return Unauthorized();
+      }
+      const [token] = dataSources.jwt.getTokens(me, '5min');
+      await dataSources.csrf.create({ id: me.id, csrfToken: token });
+      mailer.confirm({
+        email: user.email,
+        subject: 'Delete Account',
+        text: `Hi ${user.firstName}, We're sorry to see you go. 😞`,
+        buttonText: 'Delete my account',
+        token,
+        expiresIn: '5 minutes',
+      });
+      return {
+        code: 200,
+        success: true,
+        message: `We sent a delete account link to confirm you are ${user.firstName}`,
+      };
+    } catch (err) {
+      return BadRequest(err.message);
+    }
+  }
+
   static async logout(_source, _args, context) {
     const { dataSources, me } = context;
     if (!me) {

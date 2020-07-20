@@ -19,4 +19,6 @@ type Mutation {
   refreshToken: AuthResponse
   logout: AuthResponse
   deleteAccount: AuthResponse
+  "Send delete account link to user email address"
+  requestDeleteAccount: AuthResponse
 }

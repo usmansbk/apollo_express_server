@@ -12,6 +12,7 @@ export default {
     requestResetPassword: Controller.requestResetPassword,
     updateProfile: Controller.updateProfile,
     deleteAccount: Controller.deleteAccount,
+    requestDeleteAccount: Controller.requestDeleteAccount,
     verifyEmailAddress: Controller.verifyEmailAddress,
     resendVerificationLink: Controller.resendVerificationLink,
     logout: Controller.logout,
