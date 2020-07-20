@@ -2,7 +2,7 @@
 
 ## Prerequisites
 Install [Postgresql](https://docs.boundlessgeo.com/suite/1.1.1/index.html)
-Set database username and password to postgres
+Set database `usernam` and `password` to `postgres`
 
 ## Installation
 
