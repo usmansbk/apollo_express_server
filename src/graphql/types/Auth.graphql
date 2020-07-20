@@ -35,6 +35,7 @@ input SignupInput {
   email: String!
   password: String!
   phoneNumber: String
+  language: String
 }
 
 input LoginInput {
