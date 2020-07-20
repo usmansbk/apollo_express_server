@@ -323,6 +323,11 @@ export default class Auth {
       return Forbidden('Invalid token');
     }
 
+    const csrf = await dataSources.csrf.findById(me.id);
+    if (csrf?.csrfToken !== token) {
+      return Unauthorized('Link expired');
+    }
+
     try {
       const { id } = me;
       await dataSources.user.delete(id);
@@ -363,7 +368,7 @@ export default class Auth {
       return {
         code: 200,
         success: true,
-        message: `We sent a delete account link to ${user.email}`,
+        message: `We sent an email with the final step to ${user.email}`,
       };
     } catch (err) {
       return BadRequest(err.message);
