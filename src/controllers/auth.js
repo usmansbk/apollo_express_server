@@ -146,7 +146,7 @@ export default class Auth {
         return Unauthorized();
       }
       const [token] = dataSources.jwt.getTokens(me, '5min');
-      await dataSources.csrf.create({ id: me.id, token });
+      await dataSources.csrf.create({ id: me.id, csrfToken: token });
       mailer.confirm({
         email: user.email,
         subject: 'Change email address',
@@ -215,7 +215,7 @@ export default class Auth {
         return Unauthorized();
       }
       const [token] = dataSources.jwt.getTokens(me, '5min');
-      await dataSources.csrf.create({ id: me.id, token });
+      await dataSources.csrf.create({ id: me.id, csrfToken: token });
       mailer.confirm({
         email: user.email,
         subject: 'Reset Password',
