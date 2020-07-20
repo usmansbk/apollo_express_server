@@ -1,5 +1,6 @@
 .env
 .env.production
+client_secret.json
 
 *.key
 *.key.pub

@@ -4,6 +4,10 @@
 Install [Postgresql](https://docs.boundlessgeo.com/suite/1.1.1/index.html)
 Set database username and password to postgres
 
+## Setup Google
+Follow this [instructions](https://www.npmjs.com/package/googleapis#oauth2-client) to setup google,
+then download and rename the file to `client_secret.json`, then finally add it to project root directory.
+
 ## Installation
 
 ```
