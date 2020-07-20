@@ -23,6 +23,7 @@ type UpdateUserResponse implements MutationResponse {
 input UpdateUserInput {
   firstName: String
   lastName: String
+  nickName: String
   phoneNumber: String
 }
 
