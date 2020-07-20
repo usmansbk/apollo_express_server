@@ -367,6 +367,9 @@ export default class Auth {
       if (!user) {
         return Unauthorized();
       }
+      if (!user.emailVerified) {
+        return BadRequest('Verify your email address');
+      }
       const [token] = dataSources.jwt.getTokens(me, '5min');
       await dataSources.csrf.create({ id: me.id, csrfToken: token });
       mailer.confirm({
