@@ -15,3 +15,4 @@ enum Role {
 
 scalar Date
 scalar JSON
+scalar URI

@@ -30,4 +30,20 @@ export default {
       return JSON.stringify(ast.value);
     },
   }),
+  URI: new GraphQLScalarType({
+    name: 'URL',
+    description: 'Represents a valid URI',
+    parseValue(value) {
+      return new Date(value);
+    },
+    serialize(value) {
+      return value.getTime();
+    },
+    parseLiteral(ast) {
+      if (ast.kind === Kind.INT) {
+        return parseInt(ast.value, 10);
+      }
+      return null;
+    },
+  }),
 };

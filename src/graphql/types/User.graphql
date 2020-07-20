@@ -4,6 +4,7 @@ type User implements Person {
   firstName: String!
   lastName: String!
   nickName: String
+  picture: URI
   email: String!
   roles: [Role!]
   emailVerified: Boolean
