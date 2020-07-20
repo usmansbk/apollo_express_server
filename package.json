@@ -49,6 +49,7 @@
     "googleapis": "^55.0.0",
     "graphql": "^15.3.0",
     "graphql-tools": "^6.0.13",
+    "graphql-type-json": "^0.3.2",
     "jsonwebtoken": "^8.5.1",
     "nodemailer": "^6.4.10",
     "pg": "^8.3.0",

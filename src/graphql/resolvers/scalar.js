@@ -1,4 +1,5 @@
 import { GraphQLScalarType, Kind } from 'graphql';
+import GraphQLJSON from 'graphql-type-json';
 
 export default {
   Date: new GraphQLScalarType({
@@ -17,33 +18,5 @@ export default {
       return null;
     },
   }),
-  JSON: new GraphQLScalarType({
-    name: 'JSON',
-    description: 'Represents a JavaScript Object Notation format',
-    parseValue(value) {
-      return JSON.parse(value);
-    },
-    serialize(value) {
-      return JSON.stringify(value);
-    },
-    parseLiteral(ast) {
-      return JSON.stringify(ast.value);
-    },
-  }),
-  URI: new GraphQLScalarType({
-    name: 'URL',
-    description: 'Represents a valid URI',
-    parseValue(value) {
-      return new Date(value);
-    },
-    serialize(value) {
-      return value.getTime();
-    },
-    parseLiteral(ast) {
-      if (ast.kind === Kind.INT) {
-        return parseInt(ast.value, 10);
-      }
-      return null;
-    },
-  }),
+  JSON: GraphQLJSON,
 };
