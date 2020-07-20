@@ -267,7 +267,7 @@ export default class Auth {
       return {
         code: 200,
         success: true,
-        message: `We sent a delete account link to confirm you are ${user.firstName}`,
+        message: `We sent a delete account link to ${user.email}`,
       };
     } catch (err) {
       return BadRequest(err.message);
