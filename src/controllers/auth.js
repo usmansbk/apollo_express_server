@@ -65,7 +65,7 @@ export default class Auth {
     return null;
   }
 
-  static async resendVerificationLink(_, _args, context) {
+  static async resendEmailVerificationLink(_, _args, context) {
     const { dataSources, me } = context;
     if (!me) {
       return Unauthorized();
@@ -80,7 +80,7 @@ export default class Auth {
       mailer.confirm({
         email: user.email,
         subject: 'Verify email address',
-        text: "Please confirm we've got your email right",
+        text: `Hi ${user.firstName}, Please confirm we've got your email right`,
         buttonText: `I'm ${user.firstName}`,
         token: csrfToken,
         userName: user.firstName,
