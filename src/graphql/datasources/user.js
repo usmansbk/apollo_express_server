@@ -52,6 +52,18 @@ export default class UserAPI extends DataSource {
     return user;
   }
 
+  async verifyEmail(me) {
+    const user = await this.findById(me.id);
+    if (!user) {
+      throw new Error('User does not exist');
+    }
+
+    user.emailVerified = true;
+    await user.save();
+    await user.reload();
+    return user;
+  }
+
   async delete(id) {
     const user = await this.findById(id);
     if (user) {

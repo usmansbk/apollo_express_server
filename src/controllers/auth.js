@@ -98,8 +98,32 @@ export default class Auth {
     }
   }
 
-  static verifyEmailAddress() {
-    return null;
+  static async verifyEmailAddress(_, _args, context) {
+    const { dataSources, req } = context;
+    const token = req.headers?.verify_token;
+    if (!token) {
+      return BadRequest('No verify token');
+    }
+    const me = dataSources.jwt.verify(token);
+    if (!me) {
+      return Forbidden('Invalid token');
+    }
+    const csrf = await dataSources.csrf.findById(me.id);
+    if (csrf?.csrfToken !== token) {
+      return Unauthorized('Link expired');
+    }
+    try {
+      const user = await dataSources.user.verifyEmail(me);
+      await dataSources.csrf.delete(user.id);
+      return {
+        code: 200,
+        success: true,
+        message: 'Your email address has been verified.',
+        user,
+      };
+    } catch (err) {
+      return BadRequest(err.message);
+    }
   }
 
   static async refreshToken(_source, _args, context) {
