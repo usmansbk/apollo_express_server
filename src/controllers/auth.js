@@ -168,7 +168,7 @@ export default class Auth {
   static async updatePassword(_, args, context) {
     const { input } = args;
     const { dataSources, req } = context;
-    const token = req.headers?.token;
+    const token = req.headers?.reset_token;
     if (input.newPassword !== input.confirmPassword) {
       return BadRequest('Passwords do not match');
     }
