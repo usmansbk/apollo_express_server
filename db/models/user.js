@@ -51,9 +51,21 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true,
       },
     },
+    picture: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        isUrl: true,
+      }
+    },
     phoneNumber: {
       type: DataTypes.STRING,
       allowNull: true,
+    },
+    language: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'en',
     },
     emailVerified: {
       type: DataTypes.BOOLEAN,

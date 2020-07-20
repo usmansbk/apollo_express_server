@@ -27,7 +27,13 @@ module.exports = {
           allowNull: false,
           unique: true,
         },
+        picture: {
+          type: Sequelize.STRING,
+        },
         phoneNumber: {
+          type: Sequelize.STRING,
+        },
+        language: {
           type: Sequelize.STRING,
         },
         roles: {
