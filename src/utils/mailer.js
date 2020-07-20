@@ -7,7 +7,7 @@ import retryHandler from './retryHandler';
 require('dotenv').config();
 
 async function confirm({
-  email, subject, text, buttonText, expiresIn,
+  email, subject, text, buttonText, expiresIn, token,
 }) {
   retryHandler(async () => {
     const testAccount = await nodemailer.createTestAccount();
@@ -26,7 +26,7 @@ async function confirm({
       to: email,
       subject: `${process.env.APP_NAME} ${subject}`,
       html: template({
-        title: subject, text, buttonText, expiresIn,
+        title: subject, text, buttonText, expiresIn, token,
       }),
     }).then((info) => {
       logger.log(info);

@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { APP_HOST } = process.env;
 
 export default ({
