@@ -24,7 +24,7 @@ async function confirm({
     return transporter.sendMail({
       from: process.env.EMAIL,
       to: email,
-      subject,
+      subject: `${process.env.APP_NAME} ${subject}`,
       html: template({
         title: subject, text, buttonText, expiresIn,
       }),
