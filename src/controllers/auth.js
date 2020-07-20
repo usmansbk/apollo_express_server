@@ -107,7 +107,7 @@ export default class Auth {
     }
     const csrf = await dataSources.csrf.findById(me.id);
     if (csrf?.csrfToken !== token) {
-      return Unauthorized('Link expired');
+      return Unauthorized('Invalid link');
     }
     try {
       const user = await dataSources.user.verifyEmail(me);
