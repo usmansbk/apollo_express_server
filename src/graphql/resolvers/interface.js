@@ -5,7 +5,7 @@ export default {
       return obj.__typename;
     },
   },
-  Person: {
+  Profile: {
     __resolveType(obj) {
       return obj.__typename;
     },

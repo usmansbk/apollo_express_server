@@ -1,4 +1,4 @@
-type User implements Person {
+type User implements Profile {
   id: ID!
   fullName: String
   firstName: String!

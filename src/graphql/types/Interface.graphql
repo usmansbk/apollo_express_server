@@ -4,7 +4,7 @@ interface MutationResponse {
   message: String!
 }
 
-interface Person {
+interface Profile {
   id: ID!
   firstName: String!
   lastName: String!
