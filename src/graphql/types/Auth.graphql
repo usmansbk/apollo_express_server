@@ -7,6 +7,11 @@ type AuthResponse implements MutationResponse {
   refreshToken: String
 }
 
+type SocialIdentity {
+  id: ID!
+  provider: SocialProvider 
+}
+
 input ForgotPasswordInput {
   email: String!
 }

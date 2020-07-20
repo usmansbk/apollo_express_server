@@ -7,6 +7,7 @@ type User implements Person {
   picture: String 
   email: String!
   roles: [Role!]
+  identities: [SocialIdentity]
   emailVerified: Boolean
   phoneNumber: String
   updatedAt: Date!

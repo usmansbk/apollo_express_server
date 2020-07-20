@@ -3,7 +3,9 @@ import fs from 'fs';
 import path from 'path';
 import logger from '../config/logger';
 
-const file = '../../jwtRS256.key';
+require('dotenv').config();
+
+const file = `../../${process.env.JWT_KEY_FILENAME}`;
 const privateKey = fs.readFileSync(path.resolve(__dirname, file));
 const publicKey = fs.readFileSync(path.resolve(__dirname, `${file}.pub`));
 
