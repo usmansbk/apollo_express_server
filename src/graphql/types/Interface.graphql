@@ -10,7 +10,9 @@ interface Profile {
   lastName: String!
   nickName: String
   email: String!
+  picture: String
   phoneNumber: String
+  language: String
   roles: [Role!]
   identities: [SocialIdentity]
   updatedAt: Date!

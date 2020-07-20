@@ -5,6 +5,7 @@ type User implements Profile {
   lastName: String!
   nickName: String
   picture: String 
+  language: String
   email: String!
   roles: [Role!]
   identities: [SocialIdentity]
