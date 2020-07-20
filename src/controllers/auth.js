@@ -1,6 +1,8 @@
 import { BadRequest, Unauthorized, Forbidden } from '../helpers/errors';
 import mailer from '../utils/mailer';
 
+require('dotenv').config();
+
 const appName = process.env.APP_NAME;
 
 export default class Auth {
