@@ -97,7 +97,7 @@ export default class Auth {
 
   static async verifyEmailAddress(_, _args, context) {
     const { dataSources, req } = context;
-    const token = req.headers?.verify_token;
+    const token = req.headers?.token;
     if (!token) {
       return BadRequest('No verify token');
     }
@@ -125,7 +125,7 @@ export default class Auth {
 
   static async refreshToken(_source, _args, context) {
     const { dataSources, req, me } = context;
-    const refreshToken = req.headers?.refresh_token;
+    const refreshToken = req.headers?.token;
     if (!(me && refreshToken)) {
       return Unauthorized();
     }
@@ -153,7 +153,7 @@ export default class Auth {
   static async updateEmail(_source, args, context) {
     const { input } = args;
     const { dataSources, req } = context;
-    const token = req.headers?.reset_token;
+    const token = req.headers?.token;
     if (!token) {
       return BadRequest('No reset token');
     }
@@ -218,7 +218,7 @@ export default class Auth {
   static async updatePassword(_, args, context) {
     const { input } = args;
     const { dataSources, req } = context;
-    const token = req.headers?.reset_token;
+    const token = req.headers?.token;
     if (input.newPassword !== input.confirmPassword) {
       return BadRequest('Passwords do not match');
     }
@@ -308,7 +308,7 @@ export default class Auth {
   static async deleteAccount(_, _args, context) {
     const { dataSources, req } = context;
 
-    const token = req.headers?.delete_token;
+    const token = req.headers?.token;
 
     if (!token) {
       return BadRequest('No reset token');
