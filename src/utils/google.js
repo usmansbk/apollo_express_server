@@ -30,7 +30,7 @@ export default async function loadProfile(accessToken) {
       lastName: familyName,
       nickName: nickname,
       picture: image?.url,
-      email: emails[0]?.value,
+      email: emails?.[0]?.value,
       language,
     };
     return profile;
