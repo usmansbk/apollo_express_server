@@ -3,6 +3,7 @@ type User implements Person {
   fullName: String
   firstName: String!
   lastName: String!
+  nickName: String
   email: String!
   roles: [Role!]
   emailVerified: Boolean
