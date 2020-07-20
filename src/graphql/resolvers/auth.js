@@ -14,7 +14,7 @@ export default {
     deleteAccount: Controller.deleteAccount,
     requestDeleteAccount: Controller.requestDeleteAccount,
     verifyEmailAddress: Controller.verifyEmailAddress,
-    resendVerificationLink: Controller.resendVerificationLink,
+    resendEmailVerificationLink: Controller.resendVerificationLink,
     logout: Controller.logout,
   },
 };

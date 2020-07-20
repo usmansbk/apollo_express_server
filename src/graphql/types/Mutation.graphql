@@ -2,23 +2,32 @@ type Mutation {
   login(input: LoginInput!): AuthResponse 
   signUp(input: SignupInput!): AuthResponse 
   socialLogin(input: SocialLoginInput!): AuthResponse
+
   "Expects a ticket and csrf_token jwt token in your Headers"
   updateEmail(input: UpdateEmailInput!): AuthResponse
+
   "Expects a ticket and csrf_token jwt token in your Headers"
   updatePassword(input: UpdatePasswordInput!): AuthResponse
+
   updateProfile(input: UpdateUserInput!): UpdateUserResponse 
   uploadProfilePicture(input: String): UpdateUserResponse
+
   "Send verification link to user email address"
-  resendVerificationLink: AuthResponse
+  resendEmailVerificationLink: AuthResponse
+
   "Expects a ticket and csrf_token jwt in your Headers"
   verifyEmailAddress: AuthResponse
+
   "Send reset password link to user email address"
   requestResetPassword: AuthResponse
+
   "Send update email link to user email address"
   requestChangeEmail: AuthResponse
+
   refreshToken: AuthResponse
   logout: AuthResponse
   deleteAccount: AuthResponse
+
   "Send delete account link to user email address"
   requestDeleteAccount: AuthResponse
 }
