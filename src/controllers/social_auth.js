@@ -43,7 +43,7 @@ export default class SocialAuth {
         await dataSources.csrf.create({ id: user.id, csrfToken });
 
         code = 201;
-        message = `Welcome ${user.firstName}! We sent a set password link to ${user.email}.`;
+        message = `Welcome ${user.firstName}! We sent set password instructions to ${user.email}.`;
         // send a set password link to user.email
         mailer.confirm({
           email: user.email,
