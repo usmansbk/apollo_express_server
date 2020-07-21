@@ -8,7 +8,7 @@ const fields = [
   'last_name',
   'short_name',
   'email',
-  'picture',
+  'picture{url}',
 ];
 
 export default async function loadProfile(accessToken, userId = 'me') {
