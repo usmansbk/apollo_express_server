@@ -10,7 +10,7 @@ const { APP_NAME } = process.env;
 
 export default class SocialAuth {
   static async socialLogin(_, args, context) {
-    const { input: { provider, token, id } } = args;
+    const { input: { provider, token, clientId } } = args;
     const { dataSources } = context;
     let profile;
     try {
@@ -19,7 +19,7 @@ export default class SocialAuth {
           profile = await googleHandler(token);
           break;
         case FACEBOOK:
-          profile = await facebookHandler(token, id);
+          profile = await facebookHandler(token, clientId);
           break;
         default:
           return BadRequest(`${provider} not supported`);

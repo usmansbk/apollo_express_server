@@ -8,7 +8,7 @@ type AuthResponse implements MutationResponse {
 }
 
 type SocialIdentity {
-  id: ID!
+  clientId: ID!
   provider: SocialProvider!
   connection: String!
   isSocial: Boolean
@@ -44,7 +44,7 @@ input LoginInput {
 }
 
 input SocialLoginInput {
-  id: ID!
+  clientId: ID!
   token: String!
   provider: SocialProvider!
 }
