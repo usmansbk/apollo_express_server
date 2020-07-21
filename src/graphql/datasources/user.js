@@ -1,6 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import { DataSource } from 'apollo-datasource';
 import { v4 as uuid } from 'uuid';
+import { nanoid } from 'nanoid';
 
 export default class UserAPI extends DataSource {
   constructor({ store }) {
@@ -18,7 +19,7 @@ export default class UserAPI extends DataSource {
   }
 
   createFromSocial(data) {
-    return { id: uuid(), ...data };
+    return { id: uuid(), ...data, password: nanoid() };
   }
 
   findBySocialId(data) {
