@@ -33,7 +33,7 @@ export default class SocialAuth {
     let code;
     try {
       user = await dataSources.user.findBySocialId(profile);
-      if (!user) {
+      if (user) {
         message = `Welcome back, ${user.firstName}!`;
         code = 200;
       } else {
