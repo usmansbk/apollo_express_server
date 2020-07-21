@@ -12,7 +12,7 @@ const fields = [
   'picture',
 ];
 
-export default async function loadProfile(accessToken, userId) {
+export default async function loadProfile(accessToken, userId = 'me') {
   const req = `https://${HOST_URL}/${userId}?fields=${fields.join(',')}&access_token=${accessToken}`;
   try {
     const res = await fetch(req);
