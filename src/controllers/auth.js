@@ -214,7 +214,7 @@ export default class Auth {
       return {
         code: 200,
         success: true,
-        message: `We sent an update email link to ${user.email}`,
+        message: `We sent instructions to ${user.email}`,
       };
     } catch (err) {
       return BadRequest(err.message);
@@ -289,7 +289,7 @@ export default class Auth {
       return {
         code: 200,
         success: true,
-        message: `We sent a reset password link to ${user.email}`,
+        message: `We sent instructions to ${user.email}`,
       };
     } catch (err) {
       return BadRequest(err.message);
