@@ -34,6 +34,8 @@ export default async function loadProfile(accessToken) {
         picture: image?.url,
         email: emails?.[0]?.value,
         language,
+        provider: 'GOOGLE',
+        connection: 'googleapis',
       };
       return profile;
     }

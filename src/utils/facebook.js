@@ -27,6 +27,8 @@ export default async function loadProfile(accessToken, userId = 'me') {
       nickName: body.short_name,
       email: body.email,
       picture: body.picture?.data?.url,
+      provider: 'FACEBOOK',
+      connection: HOST_URL,
     };
     return profile;
   } catch (err) {
