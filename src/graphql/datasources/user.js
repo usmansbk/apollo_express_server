@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
-// import { ApolloError } from 'apollo-server-express';
 import { DataSource } from 'apollo-datasource';
+import { v4 as uuid } from 'uuid';
 
 export default class UserAPI extends DataSource {
   constructor({ store }) {
@@ -18,11 +18,11 @@ export default class UserAPI extends DataSource {
   }
 
   createFromSocial(data) {
-    return data;
+    return { id: uuid(), ...data };
   }
 
   findBySocialId(data) {
-    return data;
+    return { id: uuid(), ...data };
   }
 
   async findByEmailAndPassword(data) {
