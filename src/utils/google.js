@@ -1,5 +1,4 @@
 import { google } from 'googleapis';
-import { v4 as uuid } from 'uuid';
 import config from '../../client_secret.json';
 import logger from '../config/logger';
 
@@ -28,7 +27,6 @@ export default async function loadProfile(accessToken) {
         id, name: { familyName, givenName }, image, emails, nickname, language,
       } = user;
       const profile = {
-        id: uuid(),
         clientId: id,
         firstName: givenName,
         lastName: familyName,

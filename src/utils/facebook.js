@@ -1,5 +1,4 @@
 import fetch from 'node-fetch';
-import { v4 as uuid } from 'uuid';
 import logger from '../config/logger';
 
 const HOST_URL = 'graph.facebook.com';
@@ -22,7 +21,6 @@ export default async function loadProfile(accessToken, userId = 'me') {
     }
 
     const profile = {
-      id: uuid(),
       clientId: body.id,
       firstName: body.first_name,
       lastName: body.last_name,
