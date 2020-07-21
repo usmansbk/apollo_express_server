@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 // import { ApolloError } from 'apollo-server-express';
 import { DataSource } from 'apollo-datasource';
 
@@ -14,6 +15,14 @@ export default class UserAPI extends DataSource {
   async create(data) {
     const user = await this.store.create(data);
     return user;
+  }
+
+  createFromSocial(data) {
+    return data;
+  }
+
+  findBySocialId(data) {
+    return data;
   }
 
   async findByEmailAndPassword(data) {
