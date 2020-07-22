@@ -47,7 +47,7 @@ export default class SocialAuth {
         // send a set password link to user.email
         mailer.confirm({
           email: user.email,
-          subject: 'Welcome!',
+          subject: `Welcome ${user.firstName}!`,
           text: `Thank you for signing up with ${APP_NAME}. Please click the button below to reset your password.`,
           buttonText: 'Set password',
           token: csrfToken,
