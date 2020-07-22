@@ -6,7 +6,7 @@ import { GOOGLE, FACEBOOK } from '../helpers/constants';
 
 export default class SocialAuth {
   static async socialLogin(_, args, context) {
-    const { input: { provider, token, clientId } } = args;
+    const { input: { provider, token } } = args;
     const { dataSources } = context;
     let profile;
     try {
@@ -15,7 +15,7 @@ export default class SocialAuth {
           profile = await googleHandler(token);
           break;
         case FACEBOOK:
-          profile = await facebookHandler(token, clientId);
+          profile = await facebookHandler(token);
           break;
         default:
           return BadRequest(`${provider} not supported`);
