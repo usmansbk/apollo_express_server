@@ -18,12 +18,14 @@ export default class UserAPI extends DataSource {
     return user;
   }
 
-  createFromSocial(data) {
-    return { id: uuid(), ...data, password: nanoid() };
+  createFromSocialIdentity(data) {
+    const [input, identity] = data;
+    return { id: uuid(), ...input, password: nanoid() };
   }
 
-  findBySocialId(data) {
-    return { id: uuid(), ...data };
+  findBySocialIdentity(data) {
+    const [input, identity] = data;
+    return { id: uuid(), ...input };
   }
 
   async findByEmailAndPassword(data) {

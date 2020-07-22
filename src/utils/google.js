@@ -27,17 +27,19 @@ export default async function loadProfile(accessToken) {
         id, name: { familyName, givenName }, image, emails, nickname, language,
       } = user;
       const profile = {
-        clientId: id,
         firstName: givenName,
         lastName: familyName,
         nickName: nickname,
         picture: image?.url,
         email: emails?.[0]?.value,
         language,
+      };
+      const identity = {
         provider: 'GOOGLE',
         connection: 'googleapis',
+        clientId: id,
       };
-      return profile;
+      return [profile, identity];
     }
   } catch (err) {
     logger.log(err);

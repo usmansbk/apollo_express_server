@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { v4: uuid } = require('uuid');
 module.exports = (sequelize, DataTypes) => {
   class Identity extends Model {
     /**
@@ -16,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
   };
   Identity.init({
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.UUID,
+      defaultValue: Sequelize.UUID4,
       primaryKey: true,
     },
     clientId: {
@@ -32,5 +34,9 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Identity',
   });
+  Identity.beforeCreate(identity => {
+    identity.id = uuid();
+  });
+
   return Identity;
 };

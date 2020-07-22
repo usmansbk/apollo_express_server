@@ -21,16 +21,18 @@ export default async function loadProfile(accessToken, userId = 'me') {
     }
 
     const profile = {
-      clientId: body.id,
       firstName: body.first_name,
       lastName: body.last_name,
       nickName: body.short_name,
       email: body.email,
       picture: body.picture?.data?.url,
+    };
+    const identity = {
+      clientId: body.id,
       provider: 'FACEBOOK',
       connection: HOST_URL,
     };
-    return profile;
+    return [profile, identity];
   } catch (err) {
     logger.log(err.message);
   }

@@ -32,12 +32,12 @@ export default class SocialAuth {
     let message;
     let code;
     try {
-      user = await dataSources.user.findBySocialId(profile);
+      user = await dataSources.user.findBySocialIdentity(profile);
       if (user) {
         message = `Welcome back, ${user.firstName}!`;
         code = 200;
       } else {
-        user = await dataSources.user.createFromSocial(profile);
+        user = await dataSources.user.createFromSocialIdentity(profile);
         const payload = { id: user.id };
         const [csrfToken] = dataSources.jwt.getTokens(payload, '1d');
         await dataSources.csrf.create({ id: user.id, csrfToken });
