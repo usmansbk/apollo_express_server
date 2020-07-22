@@ -2,12 +2,16 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Identities', {
-      clientId: {
+      id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING
       },
+      clientId: {
+        type: Sequelize.STRING
+      },
       provider: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       connection: {

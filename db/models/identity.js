@@ -10,15 +10,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      const { User } = models;
+      Identity.belongsTo(User);
     }
   };
   Identity.init({
-    clientId: {
+    id: {
       type: DataTypes.STRING,
       primaryKey: true,
     },
-    provider: DataTypes.STRING,
+    clientId: {
+      type: DataTypes.STRING,
+    },
+    provider: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     connection: DataTypes.STRING,
     isSocial: DataTypes.BOOLEAN
   }, {

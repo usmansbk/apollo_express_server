@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     static associate(models) {
-      // define association here
+      const { Identity } = models;
+      User.hasMany(Identity);
     }
   }
   User.init({
@@ -92,7 +93,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
   });
 
-  User.beforeCreate(async user => {
+  User.beforeCreate(user => {
     user.id = uuid();
   });
   return User;
