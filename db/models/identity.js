@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model, Sequelize
 } = require('sequelize');
 const { v4: uuid } = require('uuid');
 module.exports = (sequelize, DataTypes) => {
