@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       const { Identity } = models;
-      User.hasMany(Identity);
+      User.hasMany(Identity, { onDelete: 'CASCADE' });
     }
   }
   User.init({
