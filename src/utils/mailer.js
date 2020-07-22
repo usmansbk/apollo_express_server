@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import nodemailer from 'nodemailer';
-import template from '../helpers/confirmHTML';
+import template from '../helpers/confirmEmail';
 import logger from '../config/logger';
 import retryHandler from './retryHandler';
 
