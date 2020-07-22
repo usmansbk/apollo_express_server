@@ -24,7 +24,7 @@ async function confirm({
     });
 
     return transporter.sendMail({
-      from: process.env.EMAIL,
+      from: process.env.OWNER_EMAIL,
       to: email,
       subject: `${process.env.APP_NAME} ${subject}`,
       html: confirmTemplate({
@@ -51,7 +51,7 @@ async function welcome({ email, userName }) {
     });
 
     return transporter.sendMail({
-      from: process.env.EMAIL,
+      from: process.env.OWNER_EMAIL,
       to: email,
       subject: `Welcome to ${process.env.APP_NAME}`,
       html: welcomeTemplate({
@@ -79,8 +79,8 @@ async function report({ subject, date, message }) {
     });
 
     return transporter.sendMail({
-      from: process.env.EMAIL,
-      to: process.env.AUTHOR_EMAIL,
+      from: process.env.OWNER_EMAIL,
+      to: process.env.REPORT_EMAIL,
       subject: `${process.env.APP_NAME} ${subject}`,
       html: reportTemplate({
         subject,

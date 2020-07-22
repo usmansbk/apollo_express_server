@@ -20,7 +20,7 @@ export default class Auth {
           message: `${input.email} tried to log in as admin`,
           date: new Date().toISOString(),
         });
-        throw AuthenticationError('Invalid email or password');
+        throw new AuthenticationError('No permissions');
       }
       mailer.report({
         subject: 'Admin login',
