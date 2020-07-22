@@ -42,7 +42,7 @@ type Mutation {
   batchUpdateUser(users: [UpdateUserInput]): BatchUserMutationResponse
   batchDeleteUser(ids: [ID]): BatchUserMutationResponse
 
-  "root mutations"
+  "owner mutations"
   makeAdmin(email: String!): UserMutationResponse
   removeAdmin(email: String!): UserMutationResponse
 }
