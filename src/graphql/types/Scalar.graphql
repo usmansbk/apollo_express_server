@@ -9,6 +9,7 @@ enum SocialProvider {
 }
 
 enum Role {
+  ROOT
   USER
   ADMIN
 }

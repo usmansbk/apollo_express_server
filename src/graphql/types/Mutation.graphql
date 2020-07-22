@@ -9,8 +9,8 @@ type Mutation {
   "Expects a signed jwt token in your Headers"
   updatePassword(input: UpdatePasswordInput!): AuthResponse
 
-  updateProfile(input: UpdateProfileInput!): UpdateUserResponse 
-  uploadProfilePicture(input: String): UpdateUserResponse
+  updateProfile(input: UpdateProfileInput!): UserMutationResponse 
+  uploadProfilePicture(input: String): UserMutationResponse
 
   "Send verification link to user email address"
   resendEmailVerificationLink: AuthResponse
@@ -34,7 +34,11 @@ type Mutation {
   requestDeleteAccount: AuthResponse
 
   "admin mutations"
-  createUser(user: CreateUserInput!): User
-  updateUser(user: UpdateUserInput!): User
-  deleteUser(id: ID!): User
+  loginAsAdmin(input: LoginInput!): AuthResponse
+  createUser(input: CreateUserInput!): UserMutationResponse
+  updateUser(input: UpdateUserInput!): UserMutationResponse
+  deleteUser(id: ID!): UserMutationResponse
+  batchCreateUser([CreateUserInput]): BatchUserMutationResponse
+  batchUpdateUser([UpdateUserInput]): BatchUserMutationResponse
+  batchDeleteUser([ID]): BatchUserMutationResponse
 }

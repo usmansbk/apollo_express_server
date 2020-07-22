@@ -15,11 +15,18 @@ type User implements Profile {
   createdAt: Date!
 }
 
-type UpdateUserResponse implements MutationResponse {
+type UserMutationResponse implements MutationResponse {
   code: String!
   success: Boolean!
   message: String!
   user: User
+}
+
+type BatchUserMutationResponse implements MutationResponse {
+  code: String!
+  success: Boolean!
+  message: String!
+  users: [User]
 }
 
 input UpdateProfileInput {
