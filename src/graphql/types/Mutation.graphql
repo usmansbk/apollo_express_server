@@ -34,7 +34,7 @@ type Mutation {
   requestDeleteAccount: AuthResponse
 
   "admin mutations"
-  loginAsAdmin(input: LoginInput!): AuthResponse
+  sudo(input: LoginInput!): AuthResponse
   createUser(input: CreateUserInput!): UserMutationResponse
   updateUser(input: UpdateUserInput!): UserMutationResponse
   deleteUser(id: ID!): UserMutationResponse
