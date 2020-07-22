@@ -15,8 +15,18 @@ export default class Auth {
       const user = await dataSources.user.findByEmailAndPassword(input);
       const { id, roles } = user;
       if (!(roles.includes('ADMIN') || roles.includes('OWNER'))) {
+        mailer.report({
+          subject: 'Suspicious activity',
+          message: `${input.email} tried to log in as admin`,
+          date: new Date().toISOString(),
+        });
         throw AuthenticationError('Invalid email or password');
       }
+      mailer.report({
+        subject: 'Admin login',
+        message: `${user.firstName} logged in as admin with ${user.email}`,
+        date: new Date().toISOString(),
+      });
 
       const payload = { id };
       const [accessToken, refreshToken] = dataSources.jwt.getTokens(payload);
@@ -24,7 +34,7 @@ export default class Auth {
       return {
         code: 200,
         success: true,
-        message: `Welcome back, ${user.firstName}!`,
+        message: `${user.firstName} logged in as super user!`,
         accessToken,
         refreshToken,
         user,

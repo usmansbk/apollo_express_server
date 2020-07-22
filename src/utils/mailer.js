@@ -2,6 +2,7 @@
 import nodemailer from 'nodemailer';
 import confirmTemplate from '../helpers/confirmEmail';
 import welcomeTemplate from '../helpers/welcomeEmail';
+import reportTemplate from '../helpers/reportEmail';
 import logger from '../config/logger';
 import retryHandler from './retryHandler';
 
@@ -64,7 +65,37 @@ async function welcome({ email, userName }) {
   });
 }
 
+async function report({ subject, date, message }) {
+  retryHandler(async () => {
+    const testAccount = await nodemailer.createTestAccount();
+    const transporter = nodemailer.createTransport({
+      host: process.env.MAILER_HOST,
+      port: 587,
+      secure: false,
+      auth: {
+        user: testAccount.user,
+        pass: testAccount.pass,
+      },
+    });
+
+    return transporter.sendMail({
+      from: process.env.EMAIL,
+      to: process.env.AUTHOR_EMAIL,
+      subject: `${process.env.APP_NAME} ${subject}`,
+      html: reportTemplate({
+        subject,
+        date,
+        message,
+      }),
+    }).then((info) => {
+      logger.log(info);
+      logger.debug('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+    });
+  });
+}
+
 export default {
   confirm,
   welcome,
+  report,
 };

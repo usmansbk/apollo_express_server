@@ -16,5 +16,8 @@ export default {
     verifyEmailAddress: Controller.verifyEmailAddress,
     resendEmailVerificationLink: Controller.resendEmailVerificationLink,
     logout: Controller.logout,
+
+    // Admin mutations
+    sudo: Controller.sudo,
   },
 };
