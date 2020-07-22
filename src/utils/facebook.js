@@ -11,8 +11,8 @@ const fields = [
   'picture{url}',
 ];
 
-export default async function loadProfile(accessToken, userId = 'me') {
-  const req = `https://${HOST_URL}/${userId}?fields=${fields.join(',')}&access_token=${accessToken}`;
+export default async function loadProfile(accessToken) {
+  const req = `https://${HOST_URL}/me?fields=${fields.join(',')}&access_token=${accessToken}`;
   try {
     const res = await fetch(req);
     const body = await res.json();
