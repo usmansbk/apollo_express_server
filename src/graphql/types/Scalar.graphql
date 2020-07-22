@@ -10,8 +10,8 @@ enum SocialProvider {
 
 enum Role {
   ROOT
-  USER
   ADMIN
+  USER
 }
 
 scalar Date
