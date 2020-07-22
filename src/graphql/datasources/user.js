@@ -1,12 +1,12 @@
 /* eslint-disable class-methods-use-this */
 import { DataSource } from 'apollo-datasource';
-import { v4 as uuid } from 'uuid';
 import { nanoid } from 'nanoid';
 
 export default class UserAPI extends DataSource {
-  constructor({ store }) {
+  constructor({ store, Identity }) {
     super();
     this.store = store;
+    this.identity = Identity;
   }
 
   initialize(config) {
@@ -18,14 +18,30 @@ export default class UserAPI extends DataSource {
     return user;
   }
 
-  createFromSocialIdentity(data) {
+  async createFromSocialIdentity(data) {
     const [input, identity] = data;
-    return { id: uuid(), ...input, password: nanoid() };
+    let user = await this.store.findOne({ where: { email: input.email } });
+    if (!user) {
+      user = await this.create({ ...input, password: nanoid() });
+    }
+    const socialIdentity = await this.identity.create({ ...identity, UserId: user.id });
+    await user.addIdentity(socialIdentity);
+    return user;
   }
 
-  findBySocialIdentity(data) {
+  async findBySocialIdentity(data) {
     const [input, identity] = data;
-    return { id: uuid(), ...input };
+    const user = await this.store.findOne({
+      where: { email: input.email },
+      include: {
+        association: 'Identities',
+        where: {
+          clientId: identity.clientId,
+          provider: identity.provider,
+        },
+      },
+    });
+    return user;
   }
 
   async findByEmailAndPassword(data) {

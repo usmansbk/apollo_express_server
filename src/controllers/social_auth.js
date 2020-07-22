@@ -43,12 +43,12 @@ export default class SocialAuth {
         await dataSources.csrf.create({ id: user.id, csrfToken });
 
         code = 201;
-        message = `Welcome ${user.firstName}! We sent set password instructions to ${user.email}.`;
+        message = `Welcome ${user.firstName}!`;
         // send a set password link to user.email
         mailer.confirm({
           email: user.email,
           subject: 'Welcome!',
-          text: `Thank you for signing up with ${APP_NAME}. Please click the button below to set your password.`,
+          text: `Thank you for signing up with ${APP_NAME}. Please click the button below to reset your password.`,
           buttonText: 'Set password',
           token: csrfToken,
           userName: user.firstName,

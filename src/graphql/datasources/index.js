@@ -8,10 +8,11 @@ const {
   User,
   Session,
   Csrf,
+  Identity,
 } = store;
 
 export default () => ({
-  user: new UserAPI({ store: User }),
+  user: new UserAPI({ store: User, Identity }),
   session: new SessionAPI({ store: Session }),
   csrf: new CsrfAPI({ store: Csrf }),
   jwt,
