@@ -44,3 +44,27 @@ input SearchUserFilterInput {
   after: ID
   sort: Order
 }
+
+input CreateUserInput {
+  firstName: String!
+  lastName: String!
+  nickName: String
+  picture: String 
+  language: String
+  email: String!
+  roles: [Role!]
+  emailVerified: Boolean
+  phoneNumber: String
+}
+
+input UpdateUserInput {
+  firstName: String
+  lastName: String
+  nickName: String
+  picture: String 
+  language: String
+  email: String
+  roles: [Role!]
+  emailVerified: Boolean
+  phoneNumber: String
+}
