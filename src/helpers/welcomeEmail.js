@@ -1,16 +1,16 @@
-require('dotenv').config();
+import json from '../../package.json';
 
-const { APP_HOST } = process.env;
+const { author, name } = json;
 
 export default ({
-  title, buttonText, text, expiresIn, productName = 'Boilerplate', token,
+  userName,
 }) => `
 <!doctype html>
 <html>
   <head>
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>${title}</title>
+    <title>Welcome to ${name}</title>
     <style>
       /* -------------------------------------
           GLOBAL RESETS
@@ -344,12 +344,12 @@ export default ({
     </style>
   </head>
   <body class="">
-    <span class="preheader">${text}</span>
+    <span class="preheader">Welcome!</span>
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
       <tr>
         <td>&nbsp;</td>
         <td class="container">
-          <h6 class="align-center product-name">${productName}</h6>
+          <h6 class="align-center product-name">${name}</h6>
           <div class="content">
             <!-- START CENTERED WHITE CONTAINER -->
             <table role="presentation" class="main">
@@ -360,27 +360,12 @@ export default ({
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <h1>${title}</h1>
-                        <p>${text}</p>
-                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
-                          <tbody>
-                            <tr>
-                              <td align="left">
-                                <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-                                  <tbody>
-                                    <tr>
-                                      <td> <a href="http://${APP_HOST}?token=${token}" target="_blank">${buttonText}</a> </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </td>
-                            </tr>
-                            ${expiresIn ? `
-                            <tr>
-                              <td>This is only valid for the next ${expiresIn}.</td>
-                            </tr>` : ''}
-                          </tbody>
-                        </table>
+                        <h1>Welcome to ${name}</h1>
+                        <p>Hey ${userName},</p>
+                        <p>I'm ${author}, the author of ${name} and I'd like to personally thank you for signing up to our service.</p>
+                        <p>I'd love to hear what you think of ${name} and if there is anything we can improve.</p>
+                        <p>If you have any questions, please reply to this email. I'm always happy to help!</p>
+                        <p>${author}</p>
                       </td>
                     </tr>
                   </table>
