@@ -27,7 +27,7 @@ type Mutation {
   refreshToken: AuthResponse
   logout: AuthResponse
 
-  "Expects a signed jwt token jwt token in your Headers"
+  "Expects a signed jwt token in your Headers"
   deleteAccount: AuthResponse
 
   "Send delete account link to user email address"
