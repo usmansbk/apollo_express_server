@@ -63,11 +63,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    language: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: 'en',
-    },
     emailVerified: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,

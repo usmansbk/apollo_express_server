@@ -27,7 +27,6 @@ input UpdateUserInput {
   lastName: String
   nickName: String
   phoneNumber: String
-  language: String
 }
 
 input SearchUserFilterInput {

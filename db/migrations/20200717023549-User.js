@@ -33,9 +33,6 @@ module.exports = {
         phoneNumber: {
           type: Sequelize.STRING,
         },
-        language: {
-          type: Sequelize.STRING,
-        },
         roles: {
           type: Sequelize.ARRAY(Sequelize.ENUM('USER', 'ADMIN')),
           allowNull: false,

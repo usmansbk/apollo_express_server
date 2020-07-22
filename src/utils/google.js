@@ -24,7 +24,7 @@ export default async function loadProfile(accessToken) {
       const res = await plus.people.get({ userId: data.user_id, auth });
       const { data: user } = res;
       const {
-        id, name: { familyName, givenName }, image, emails, nickname, language,
+        id, name: { familyName, givenName }, image, emails, nickname,
       } = user;
       const profile = {
         firstName: givenName,
@@ -32,7 +32,6 @@ export default async function loadProfile(accessToken) {
         nickName: nickname,
         picture: image?.url,
         email: emails?.[0]?.value,
-        language,
       };
       const identity = {
         provider: 'GOOGLE',

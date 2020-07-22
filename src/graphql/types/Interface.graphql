@@ -12,7 +12,6 @@ interface Profile {
   email: String!
   picture: String
   phoneNumber: String
-  language: String
   roles: [Role!]
   emailVerified: Boolean
   identities: [SocialIdentity]
