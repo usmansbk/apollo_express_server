@@ -38,7 +38,7 @@ type Mutation {
   createUser(input: CreateUserInput!): UserMutationResponse
   updateUser(input: UpdateUserInput!): UserMutationResponse
   deleteUser(id: ID!): UserMutationResponse
-  batchCreateUser([CreateUserInput]): BatchUserMutationResponse
-  batchUpdateUser([UpdateUserInput]): BatchUserMutationResponse
-  batchDeleteUser([ID]): BatchUserMutationResponse
+  batchCreateUser(users: [CreateUserInput]): BatchUserMutationResponse
+  batchUpdateUser(users: [UpdateUserInput]): BatchUserMutationResponse
+  batchDeleteUser(ids: [ID]): BatchUserMutationResponse
 }
