@@ -44,7 +44,7 @@ input LoginInput {
 }
 
 input SocialLoginInput {
-  clientId: ID!
+  clientId: ID
   token: String!
   provider: SocialProvider!
 }
