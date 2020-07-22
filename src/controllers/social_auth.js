@@ -4,10 +4,6 @@ import googleHandler from '../utils/google';
 import facebookHandler from '../utils/facebook';
 import { GOOGLE, FACEBOOK } from '../helpers/constants';
 
-require('dotenv').config();
-
-const { APP_NAME } = process.env;
-
 export default class SocialAuth {
   static async socialLogin(_, args, context) {
     const { input: { provider, token, clientId } } = args;
@@ -38,21 +34,12 @@ export default class SocialAuth {
         code = 200;
       } else {
         user = await dataSources.user.createFromSocialIdentity(profile);
-        const payload = { id: user.id };
-        const [csrfToken] = dataSources.jwt.getTokens(payload, '1d');
-        await dataSources.csrf.create({ id: user.id, csrfToken });
-
         code = 201;
         message = `Welcome ${user.firstName}!`;
         // send a set password link to user.email
-        mailer.confirm({
+        mailer.welcome({
           email: user.email,
-          subject: `Welcome ${user.firstName}!`,
-          text: `Thank you for signing up with ${APP_NAME}. Please click the button below to reset your password.`,
-          buttonText: 'Set password',
-          token: csrfToken,
           userName: user.firstName,
-          expiresIn: '24 hours',
         });
       }
       const { id } = user;

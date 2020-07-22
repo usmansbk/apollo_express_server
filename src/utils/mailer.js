@@ -1,6 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import nodemailer from 'nodemailer';
-import template from '../helpers/confirmEmail';
+import confirmTemplate from '../helpers/confirmEmail';
+import welcomeTemplate from '../helpers/welcomeEmail';
 import logger from '../config/logger';
 import retryHandler from './retryHandler';
 
@@ -25,8 +26,36 @@ async function confirm({
       from: process.env.EMAIL,
       to: email,
       subject: `${process.env.APP_NAME} ${subject}`,
-      html: template({
+      html: confirmTemplate({
         title: subject, text, buttonText, expiresIn, token,
+      }),
+    }).then((info) => {
+      logger.log(info);
+      logger.debug('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+    });
+  });
+}
+
+async function welcome({ email, userName }) {
+  retryHandler(async () => {
+    const testAccount = await nodemailer.createTestAccount();
+    const transporter = nodemailer.createTransport({
+      host: process.env.MAILER_HOST,
+      port: 587,
+      secure: false,
+      auth: {
+        user: testAccount.user,
+        pass: testAccount.pass,
+      },
+    });
+
+    return transporter.sendMail({
+      from: process.env.EMAIL,
+      to: email,
+      subject: `Welcome to ${process.env.APP_NAME}`,
+      html: welcomeTemplate({
+        title: `Welcome to ${process.env.APP_NAME}`,
+        userName,
       }),
     }).then((info) => {
       logger.log(info);
@@ -37,4 +66,5 @@ async function confirm({
 
 export default {
   confirm,
+  welcome,
 };
