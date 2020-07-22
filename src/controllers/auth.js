@@ -1,3 +1,4 @@
+import { AuthenticationError } from 'apollo-server-express';
 import { BadRequest, Unauthorized, Forbidden } from '../helpers/errors';
 import mailer from '../utils/mailer';
 
@@ -6,6 +7,33 @@ require('dotenv').config();
 const appName = process.env.APP_NAME;
 
 export default class Auth {
+  static async sudo(_source, args, context) {
+    const { input } = args;
+    const { dataSources } = context;
+
+    try {
+      const user = await dataSources.user.findByEmailAndPassword(input);
+      const { id, roles } = user;
+      if (!(roles.includes('ADMIN') || roles.includes('OWNER'))) {
+        throw AuthenticationError('Invalid email or password');
+      }
+
+      const payload = { id };
+      const [accessToken, refreshToken] = dataSources.jwt.getTokens(payload);
+      await dataSources.session.create({ id, refreshToken });
+      return {
+        code: 200,
+        success: true,
+        message: `Welcome back, ${user.firstName}!`,
+        accessToken,
+        refreshToken,
+        user,
+      };
+    } catch (err) {
+      return BadRequest(err.message);
+    }
+  }
+
   static async login(_source, args, context) {
     const { input } = args;
     const { dataSources } = context;
