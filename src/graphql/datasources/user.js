@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
 import { DataSource } from 'apollo-datasource';
 import { nanoid } from 'nanoid';
@@ -113,4 +115,23 @@ export default class UserAPI extends DataSource {
     }
     throw new Error('User not found');
   }
+
+  async bulkCreate(records) {
+    const users = await this.store.bulkCreate(records, { returning: true });
+    return users;
+  }
+
+  async bulkUpdate(records) {
+    const users = await this.store.bulkUpdate(records);
+    return users;
+  }
+
+  async bulkDelete(ids) {
+    const users = await this.store.bulkDelete(ids);
+    return users;
+  }
+
+  async makeAdmin(email) {}
+
+  async removeAdmin(email) {}
 }

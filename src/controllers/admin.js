@@ -79,18 +79,133 @@ export default class Admin {
     }
   }
 
-  static batchCreateUser() {
+  static async batchCreateUser(_source, args, context) {
+    const { users: records } = args;
+    const { dataSources, me } = context;
+
+    if (!me) {
+      return Unauthorized();
+    }
+
+    try {
+      const currentUser = await dataSources.user.findById(me.id);
+      if (!(currentUser && currentUser?.roles.includes('ADMIN'))) {
+        return Forbidden('Not permitted');
+      }
+
+      const users = await dataSources.user.bulkCreate(records);
+      return {
+        code: 201,
+        message: 'Users created',
+        success: true,
+        users,
+      };
+    } catch (err) {
+      return BadRequest(err.message);
+    }
   }
 
-  static batchUpdateUser() {
+  static async batchUpdateUser(_source, args, context) {
+    const { users: records } = args;
+    const { dataSources, me } = context;
+
+    if (!me) {
+      return Unauthorized();
+    }
+
+    try {
+      const currentUser = await dataSources.user.findById(me.id);
+      if (!(currentUser && currentUser?.roles.includes('ADMIN'))) {
+        return Forbidden('Not permitted');
+      }
+
+      const users = await dataSources.user.bulkUpdate(records);
+      return {
+        code: 200,
+        message: 'Users updated',
+        success: true,
+        users,
+      };
+    } catch (err) {
+      return BadRequest(err.message);
+    }
   }
 
-  static batchDeleteUser() {
+  static async batchDeleteUser(_source, args, context) {
+    const { ids } = args;
+    const { dataSources, me } = context;
+
+    if (!me) {
+      return Unauthorized();
+    }
+
+    try {
+      const currentUser = await dataSources.user.findById(me.id);
+      if (!(currentUser && currentUser?.roles.includes('ADMIN'))) {
+        return Forbidden('Not permitted');
+      }
+
+      const users = await dataSources.user.bulkDelete(ids);
+      return {
+        code: 200,
+        message: 'Users updated',
+        success: true,
+        users,
+      };
+    } catch (err) {
+      return BadRequest(err.message);
+    }
   }
 
-  static makeAdmin() {
+  static async makeAdmin(_source, args, context) {
+    const { email } = args;
+    const { dataSources, me } = context;
+
+    if (!me) {
+      return Unauthorized();
+    }
+
+    try {
+      const currentUser = await dataSources.user.findById(me.id);
+      if (!(currentUser && currentUser?.roles.includes('ADMIN'))) {
+        return Forbidden('Not permitted');
+      }
+
+      const users = await dataSources.user.makeAdmin(email);
+      return {
+        code: 200,
+        message: `${email} promoted to admin`,
+        success: true,
+        users,
+      };
+    } catch (err) {
+      return BadRequest(err.message);
+    }
   }
 
-  static removeAdmin() {
+  static async removeAdmin(_source, args, context) {
+    const { email } = args;
+    const { dataSources, me } = context;
+
+    if (!me) {
+      return Unauthorized();
+    }
+
+    try {
+      const currentUser = await dataSources.user.findById(me.id);
+      if (!(currentUser && currentUser?.roles.includes('ADMIN'))) {
+        return Forbidden('Not permitted');
+      }
+
+      const users = await dataSources.user.removeAdmin(email);
+      return {
+        code: 200,
+        message: `${email} removed from admin`,
+        success: true,
+        users,
+      };
+    } catch (err) {
+      return BadRequest(err.message);
+    }
   }
 }
