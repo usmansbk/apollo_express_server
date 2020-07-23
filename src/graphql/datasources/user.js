@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-empty-function */
-/* eslint-disable class-methods-use-this */
 import { DataSource } from 'apollo-datasource';
 import { nanoid } from 'nanoid';
 
@@ -122,16 +119,24 @@ export default class UserAPI extends DataSource {
   }
 
   async bulkUpdate(records) {
-    const users = await this.store.bulkUpdate(records);
+    // will update on duplicate keys
+    const users = await this.bulkCreate(records);
     return users;
   }
 
   async bulkDelete(ids) {
-    const users = await this.store.bulkDelete(ids);
+    const users = await this.store.findAll({
+      where: {
+        id: ids,
+      },
+    });
+    users.forEach(async (user) => {
+      await user.destroy();
+    });
     return users;
   }
 
-  async makeAdmin(email) {}
+  // async makeAdmin(email) {}
 
-  async removeAdmin(email) {}
+  // async removeAdmin(email) {}
 }
