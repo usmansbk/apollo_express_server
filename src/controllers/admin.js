@@ -148,7 +148,7 @@ export default class Admin {
       const users = await dataSources.user.bulkDelete(ids);
       return {
         code: 200,
-        message: 'Users updated',
+        message: 'Users deleted',
         success: true,
         users,
       };
