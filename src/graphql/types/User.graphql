@@ -4,7 +4,7 @@ type User implements Profile {
   firstName: String!
   lastName: String!
   nickName: String
-  picture: String 
+  picture: Media 
   language: String
   email: String!
   roles: [Role!]
@@ -14,6 +14,10 @@ type User implements Profile {
   phoneNumber: String
   updatedAt: Date!
   createdAt: Date!
+}
+
+type Media {
+  url: String
 }
 
 type UserMutationResponse implements MutationResponse {

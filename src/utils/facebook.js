@@ -25,7 +25,9 @@ export default async function loadProfile(accessToken) {
       lastName: body.last_name,
       nickName: body.short_name,
       email: body.email,
-      picture: body.picture?.data?.url,
+      picture: {
+        url: body.picture?.data?.url,
+      },
     };
     const identity = {
       clientId: body.id,

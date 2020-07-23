@@ -28,7 +28,7 @@ module.exports = {
           unique: true,
         },
         picture: {
-          type: Sequelize.STRING,
+          type: Sequelize.JSONB,
         },
         phoneNumber: {
           type: Sequelize.STRING,

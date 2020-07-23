@@ -10,7 +10,7 @@ interface Profile {
   lastName: String!
   nickName: String
   email: String!
-  picture: String
+  picture: Media 
   phoneNumber: String
   roles: [Role!]
   scopes: [String]

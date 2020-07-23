@@ -53,11 +53,8 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     picture: {
-      type: DataTypes.STRING,
+      type: DataTypes.JSONB,
       allowNull: true,
-      validate: {
-        isUrl: true,
-      }
     },
     phoneNumber: {
       type: DataTypes.STRING,
