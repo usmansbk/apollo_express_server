@@ -11,7 +11,7 @@ export default class Admin {
 
     try {
       const currentUser = await dataSources.user.findById(me.id);
-      if (!(currentUser && currentUser.roles.includes('ADMIN'))) {
+      if (!(currentUser && currentUser?.roles.includes('ADMIN'))) {
         return Forbidden('Not permitted');
       }
 
@@ -37,7 +37,7 @@ export default class Admin {
 
     try {
       const currentUser = await dataSources.user.findById(me.id);
-      if (!(currentUser && currentUser.roles.includes('ADMIN'))) {
+      if (!(currentUser && currentUser?.roles.includes('ADMIN'))) {
         return Forbidden('Not permitted');
       }
 
@@ -63,7 +63,7 @@ export default class Admin {
 
     try {
       const currentUser = await dataSources.user.findById(me.id);
-      if (!(currentUser && currentUser.roles.includes('ADMIN'))) {
+      if (!(currentUser && currentUser?.roles.includes('ADMIN'))) {
         return Forbidden('Not permitted');
       }
 

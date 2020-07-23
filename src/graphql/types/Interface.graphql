@@ -13,7 +13,7 @@ interface Profile {
   picture: Media 
   phoneNumber: String
   roles: [Role!]
-  scopes: [String]
+  permissions: [String]
   emailVerified: Boolean
   identities: [SocialIdentity]
   updatedAt: Date!
