@@ -13,6 +13,7 @@ interface Profile {
   picture: String
   phoneNumber: String
   roles: [Role!]
+  scopes: [String]
   emailVerified: Boolean
   identities: [SocialIdentity]
   updatedAt: Date!

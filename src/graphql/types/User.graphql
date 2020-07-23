@@ -8,6 +8,7 @@ type User implements Profile {
   language: String
   email: String!
   roles: [Role!]
+  scopes: [String]
   identities: [SocialIdentity]
   emailVerified: Boolean
   phoneNumber: String
@@ -52,8 +53,6 @@ input CreateUserInput {
   picture: String 
   language: String
   email: String!
-  roles: [Role!]
-  emailVerified: Boolean
   phoneNumber: String
 }
 
@@ -64,7 +63,5 @@ input UpdateUserInput {
   picture: String 
   language: String
   email: String
-  roles: [Role!]
-  emailVerified: Boolean
   phoneNumber: String
 }
