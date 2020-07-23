@@ -22,7 +22,12 @@ export default class UserAPI extends DataSource {
     const [input, identity] = data;
     let user = await this.store.findOne({ where: { email: input.email } });
     if (!user) {
-      user = await this.create({ ...input, password: nanoid() });
+      user = await this.create({ ...input, password: nanoid(), verifieidEmail: true });
+    }
+    if (!user.verifieidEmail) {
+      user.verifieidEmail = true;
+      await user.save();
+      await user.reload();
     }
     const socialIdentity = await this.identity.create({ ...identity, UserId: user.id });
     await user.addIdentity(socialIdentity);
